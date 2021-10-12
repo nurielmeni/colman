@@ -1,11 +1,22 @@
 <?php
 
 defined('_JEXEC') or die;
-use Joomla\CMS\Log\Log;
 class apiController extends nlsCards {
 
     public function __construct($username_token, $password_token) {
         parent::__construct($username_token, $password_token);
+        JLog::addLogger(
+            array(
+                 // Sets file name
+                 'text_file' => 'colman.log.php'
+            ),
+            // Sets messages of all log levels to be sent to the file.
+            JLog::ALL,
+            // The log category/categories which should be recorded in this file.
+            // In this case, it's just the one category from our extension.
+            // We still need to put it inside an array.
+            array('colman')
+        );
     }
 
     public function downloadFileAction($param) {
@@ -69,27 +80,40 @@ class apiController extends nlsCards {
     }
 
     public function getJobContentAction($params) {
-        Log::add('function: getJobContentAction', Log::DEBUG, 'colman-slowness');
         $from = intval($params['lastId']) * intval($params['countPerPage'] - 1) + 1;
         $to = $from + intval($params['countPerPage'] - 1);
 
         if ($params['cont_type'] === "filled-jobs") {
-            Log::add('filled-jobs: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $start = microtime(true);
+            JLog::add('filled-jobs: start: ' . $start, JLog::INFO, 'colman');
             $listData = $this->getFilledJobsList($this->user_id, $from, $to);
-            Log::add('filled-jobs: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $end = microtime(true);
+            JLog::add('filled-jobs: end: ' . $end, JLog::INFO, 'colman');
+            JLog::add('filled-jobs: end: ' . ($end - $start), JLog::INFO, 'colman');
         } elseif ($params['cont_type'] === "new-jobs") {
-            Log::add('new-jobs: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $start = microtime(true);
+            JLog::add('new-jobs: start: ' . $start, JLog::INFO, 'colman');
             $listData = $this->getNewJobsList($params['lastId'] * ($params['countPerPage'] - 1), $params['countPerPage']);
-            Log::add('new-jobs: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $end = microtime(true);
+            JLog::add('new-jobs: end: ' . $end, JLog::INFO, 'colman');
+            JLog::add('new-jobs: end: ' . ($end - $start), JLog::INFO, 'colman');
         } elseif ($params['cont_type'] === "cv") {
-            Log::add('cv: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $start = microtime(true);
+            JLog::add('cv: start: ' . $start, JLog::INFO, 'colman');
             $listData = $this->getCvList($this->user_id);
-            Log::add('cv: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $end = microtime(true);
+            JLog::add('cv: end: ' . $end, JLog::INFO, 'colman');
+            JLog::add('cv: end: ' . ($end - $start), JLog::INFO, 'colman');
         } elseif ($params['cont_type'] === "files") {
-            Log::add('files: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $start = microtime(true);
+            JLog::add('files: start: ' . $start, JLog::INFO, 'colman');
             $listData = $this->getFiles($this->user_id, $from, $to);
-            Log::add('files: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
+            $end = microtime(true);
+            JLog::add('files: end: ' . $end, JLog::INFO, 'colman');
+            JLog::add('files: end: ' . ($end - $start), JLog::INFO, 'colman');
         }
+        JLog::add('---------------', JLog::INFO, 'colman');
+
         echo json_encode($listData);
         die;
     }
