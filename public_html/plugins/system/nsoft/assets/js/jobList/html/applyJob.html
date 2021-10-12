@@ -1,0 +1,80 @@
+<div class="apply-job">
+    <div class="apply-job-title-container">
+        <h1 class="apply-job-title">הגשת קורות חיים</h1>
+       <div class="apply-job-horizontal-line"></div>
+  
+    </div>
+    
+     <div class="apply-job-upload-response apply-job-upload-form" style="display: none">נשלח בהצלחה!</div>
+    <form  method="post" enctype="multipart/form-data" id="apply-job-upload-form" onsubmit="return false">
+        <input type="hidden" id="type" name="type" value="">
+        <input type="hidden" id="controller" name="controller" value="">
+        <input type="hidden" id="action" name="action" value="applyForJobAction">
+        <input type="hidden" id="jobId" name="jobId" value="">
+        <input type="hidden" id="jobCode" name="jobCode" value="">
+        <input type="hidden" id="jobTitle" name="jobTitle" value="">
+
+        <ul class="apply-job-content">
+            <li class="apply-job-content-container">
+                <div class="apply-job-box">
+                    <div class="apply-job-top">
+                        <div>
+                            <p class="apply-job-text">השתמש בקובץ קיים במערכת</p>
+                        </div>
+                    </div>
+                    <div class="apply-job-bottom">
+
+                        <select id="apply-job-upload-file2" class="apply-job-upload-select" name="selectedCv[]" multiple>
+                            <!--<span class="apply-job-upload-icon-file2"></span>-->
+                            <!--<option value="" class="">תיק עבודות...</option>-->
+                        </select>
+                        <select id="apply-job-upload-file1" class="apply-job-upload-select" name="selectedFile[]" multiple>
+                            <!--<span class="apply-job-upload-icon-file1"></span>-->
+                            <!--<option value="" class="">קורות חיים...</option>-->
+                        </select>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="apply-job-content-container upload">
+                <div class="apply-job-box">
+                    <div class="apply-job-bottom">
+                        <select id="apply-job-upload-file-type" class="apply-job-upload-select" name="apply-job-upload-file-type" >
+                            <option value="cv">העלה קובץ קו”ח</option>
+                            <option value="file">העלה מסמך</option>
+                        </select>
+                        <br />
+                        <span id="apply-job-selected-fileName"></span>
+                        <input type="file" name="apply-job-localFile" id="apply-job-localFile" class="apply-job-localFile"
+                               accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,application/rtf">
+                        <input type="hidden" name="apply-job-dropbox-fileUrl" id="apply-job-dropbox-fileUrl"/>
+                        <input type="hidden" name="apply-job-dropbox-fileName" id="apply-job-dropbox-fileName"/>
+                        <input type="hidden" name="apply-job-skydrive-fileUrl" id="apply-job-skydrive-fileUrl"/>
+                        <input type="hidden" name="apply-job-skydrive-fileName" id="apply-job-skydrive-fileName"/>
+
+                        <a href="javascript: void(0);" id="apply-job-upload-computer" class="apply-job-upload apply-job-upload-computer"><span class="apply-job-upload-icon"></span><span class="apply-job-upload-text">העלה קובץ מהמחשב</span></a>
+                        <a href="javascript: void(0);" id="apply-job-upload-dropbox" class="apply-job-upload apply-job-upload-dropbox"><span class="apply-job-upload-icon"></span><span class="apply-job-upload-text">העלה קובץ מהדרופבוקס</span></a>
+                        <a href="javascript: void(0);" id="apply-job-upload-skydrive" class="apply-job-upload apply-job-upload-skydrive"><span class="apply-job-upload-icon"></span><span class="apply-job-upload-text">העלה קובץ מ-Skydrive</span></a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="apply-job-content-container comments">
+                <div class="apply-job-box">
+                    <div class="apply-job-top">
+                        <div class="apply-job-nopadding">
+                            <p class="apply-job-text">ניתן להוסיף טקסט מקדים שיצורף לקורות החיים</p>
+                        </div>
+                    </div>
+                    <div class="apply-job-bottom">
+                        <textarea rows="4" cols="50" name="apply-job-comment"></textarea>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="apply-job-button-container">
+            <button id="apply-job-submit" class="apply-job-submit">הגש קו”ח</button>
+        </div>
+    </form>
+</div>

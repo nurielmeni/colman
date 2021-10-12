@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.4" type="template">
+	<name>Niloosoft Template</name>
+	<creationDate>2008-05-01</creationDate>
+	<author>nSoft</author>
+	<authorEmail>john@example.com</authorEmail>
+	<authorUrl>http://www.example.com</authorUrl>
+	<license>GNU/GPL</license>
+	<version>1.0.2</version>
+	<description>Niloosoft Template</description>
+	<files>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<folder>images</folder>
+		<folder>css</folder>
+			<folder>js</folder>
+	</files>
+	<positions>
+		<position>wedo_modul_breadcrumb</position>
+		<position>wedo_modul_footer</position>
+		<position>wedo_modul_header</position>
+		<position>wedo_modul_search_basic</position>
+		<position>wedo_modul_board</position>
+		<position>wedo_modul_search_advanced</position>
+		<position>wedo_modul_category</position>
+		<position>wedo_modul_resume_send</position>
+	</positions>
+</extension>

@@ -1,0 +1,32 @@
+DEBUG   |170122 14:51:28|Fetching filter data from database
+DEBUG   |170122 14:51:28|Loading filters
+DEBUG   |170122 14:51:28|-- Loading filter Regexskipdirs
+DEBUG   |170122 14:51:28|-- Loading filter Tables
+DEBUG   |170122 14:51:28|-- Loading filter Extradirs
+DEBUG   |170122 14:51:28|-- Loading filter Regexskipfiles
+DEBUG   |170122 14:51:28|-- Loading filter Regexdirectories
+DEBUG   |170122 14:51:28|-- Loading filter Incremental
+DEBUG   |170122 14:51:28|-- Loading filter Multidb
+DEBUG   |170122 14:51:28|-- Loading filter Regextables
+DEBUG   |170122 14:51:28|-- Loading filter Regextabledata
+DEBUG   |170122 14:51:28|-- Loading filter Tabledata
+DEBUG   |170122 14:51:28|-- Loading filter Regexfiles
+DEBUG   |170122 14:51:28|-- Loading filter Files
+DEBUG   |170122 14:51:28|-- Loading filter Skipdirs
+DEBUG   |170122 14:51:28|-- Loading filter Skipfiles
+DEBUG   |170122 14:51:28|-- Loading filter Directories
+DEBUG   |170122 14:51:28|-- Loading filter Libraries
+DEBUG   |170122 14:51:28|-- Loading filter Excludetabledata
+DEBUG   |170122 14:51:28|-- Loading filter Sitedb
+DEBUG   |170122 14:51:28|-- Loading filter Joomlaskipdirs
+DEBUG   |170122 14:51:28|-- Loading filter Cvsfolders
+DEBUG   |170122 14:51:28|-- Loading filter Excludefiles
+DEBUG   |170122 14:51:28|-- Loading filter Excludefolders
+DEBUG   |170122 14:51:28|-- Loading filter Siteroot
+DEBUG   |170122 14:51:28|-- Loading filter Joomlaskipfiles
+DEBUG   |170122 14:51:28|-- Loading filter Systemcachefiles
+DEBUG   |170122 14:51:28|Loading optional filters
+DEBUG   |170122 14:51:28|-- Loading optional filter Stack\StackHoststats
+DEBUG   |170122 14:51:28|-- Loading optional filter Stack\StackErrorlogs
+DEBUG   |170122 14:51:28|-- Loading optional filter Stack\StackMyjoomla
+DEBUG   |170122 14:51:28|-- Loading optional filter Stack\StackFinder

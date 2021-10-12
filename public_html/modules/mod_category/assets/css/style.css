@@ -1,0 +1,145 @@
+.apply-job-upload-response.apply-job-upload-form
+{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+.domain-modul {
+    background-color: #001e57;
+    display: inline-block;
+    height: 900px;
+    width: 100%;
+}
+
+.domain-modul-title-container {
+    margin: 47px auto 0;
+    width: 1170px;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.domain-modul-title {
+    color: #fff;
+    font-family: "almoni_dl_aaablack";
+    font-size: 60px;
+    text-align: center;
+}
+
+.domain-modul-horizontal-line {
+    background-color: #00a4c8;
+    height: 2px;
+    margin: 0 auto;
+    width: 77px;
+}
+
+.domain-modul-content {
+    height: 320px;
+    margin: 50px auto 0;
+    width: 1170px;
+}
+
+.domain-modul-content-container {
+    display: block;
+}
+
+.domain-modul-box:first-child {
+    margin-left: 10px;
+}
+
+.domain-modul-box {
+    background-color: #64cce8;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 145px;
+    margin: 0 15px 30px 11px;
+    overflow: hidden;
+    position: relative;
+    width: 360px;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.domain-modul-bigbox {
+    width: 750px;
+}
+
+.economics-domain .domain-modul-box-icon {
+    /* background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -9px -88px; */
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -165px;
+}
+
+.accounting-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -9px -88px;
+}
+
+.computer-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -9px -651px;
+}
+
+.communication-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -241px;
+}
+
+.psychology-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -9px -487px;
+}
+
+.design-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -6px;
+}
+
+.business-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -11px -564px;
+}
+
+.behavioral-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -323px;
+}
+
+.visual-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -323px;
+}
+
+.accessibility-domain .domain-modul-box-icon {
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -165px;
+}
+
+.other-domain .domain-modul-box-icon {
+    /* background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -8px -165px; */
+    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -9px -405px;
+}
+
+.domain-modul-box-icon {
+    height: 65px;
+    margin: auto auto 5px;
+    width: 65px;
+}
+
+.domain-modul-box-info {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 100%;
+}
+
+.domain-modul-box-name {
+    color: #001f5b;
+    font-family: "almoni_dl_aaablack";
+    font-size: 25px;
+}
+
+.domain-modul-box-name-secondary {
+    color: #001f5b;
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.category .popup_head {
+    background-color: #2EAB54;
+}

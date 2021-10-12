@@ -1,0 +1,50 @@
+version: '3.1'
+
+services:
+  joomladb:
+    image: mysql:5.7
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: Meni1971
+      MYSQL_DATABASE: colman_db
+      MYSQL_USER: colman_user
+      MYSQL_PASSWORD: DSASDh347jh
+      #MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db-colman:/var/lib/mysql
+    networks:
+      - back-colman
+  pma:
+    depends_on:
+      - joomladb
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8088:80
+    restart: on-failure
+    environment:
+      PMA_HOST: joomladb
+      MYSQL_ROOT_PASSWORD: Meni1971
+    networks:
+      - back-colman
+  joomla:
+    depends_on:
+      - joomladb
+    build: .
+    restart: always
+    links:
+      - joomladb:mysql
+    ports:
+      - 8080:80
+    volumes:
+      - ./public_html:/var/www/html
+    environment:
+      JOOMLA_DB_HOST: joomladb
+      JOOMLA_DB_PASSWORD: DSASDh347jh
+      JOOMLA_DB_NAME: colman_db
+      JOOMLA_DB_USER: colman_user
+    networks:
+      - back-colman
+volumes:
+  db-colman:
+networks:
+  back-colman:

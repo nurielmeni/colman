@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+    <name>Niloosoft Upload Resume module</name>
+    <author>nSoft</author>
+    <version>1.0.0</version>
+    <description>Upload Resume Module</description>
+    <files>
+        <filename>mod_upload_resume.xml</filename>
+        <filename module="mod_upload_resume">mod_upload_resume.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <filename>tmpl/default.php</filename>
+        <folder>assets</folder>
+        <folder>controllers</folder>
+    </files>
+    <config>
+    </config>
+</extension>

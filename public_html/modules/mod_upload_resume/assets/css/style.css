@@ -1,0 +1,205 @@
+.resume-modul {
+    background-color: #001e57;
+    display: inline-block;
+    height: 567px;
+    width: 100%;
+}
+
+.resume-modul-title-container {
+    margin: 47px auto 0;
+    width: 1170px;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.resume-modul-title {
+    color: #fff;
+    font-family: "almoni_dl_aaablack";
+    font-size: 60px;
+    text-align: center;
+}
+
+.resume-modul-horizontal-line {
+    background-color: #00a4c8;
+    height: 2px;
+    margin: 0 auto;
+    width: 77px;
+}
+
+.resume-modul-subtitle {
+    color: #fff;
+    font-size: 30px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.resume-modul-content {
+    height: 316px;
+    margin: 40px auto 0;
+    width: 1170px;
+    text-align: center;
+}
+
+.resume-modul-content-container {
+    display: inline-block;
+    height: 100%;
+    margin-left: -4px;
+    vertical-align: top;
+}
+
+.resume-modul-content-container:first-child {
+    margin-left: -5px;
+}
+
+.resume-modul-box {
+    background-color: #00246a;
+    border-radius: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    margin: 0 15px;
+    overflow: hidden;
+    padding: 20px 50px;
+    position: relative;
+    width: 360px;
+}
+
+.resume-modul-top {
+    
+}
+
+.resume-modul-top div {
+    display: inline-block;
+    margin-top: 8px;
+    padding-top: 10px;
+    vertical-align: top;
+}
+
+.resume-modul-top div.resume-modul-nopadding {
+    padding-top: 0;
+}
+
+.resume-modul-bottom {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.resume-modul-number {
+    color: #fff;
+    display: inline-block;
+    font-size: 66px;
+    line-height: 0.8;
+    margin-left: 5px;
+}
+
+.resume-modul-text {
+    color: #fff;
+    font-size: 20px;
+}
+
+.resume-modul-subtext {
+    color: #fff;
+    font-size: 16px;
+}
+
+.resume-modul-input {
+    background-color: transparent;
+    border: 2px solid #68cce8;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    display: block;
+    font-family: "almoni_dl_aaaregular";
+    font-size: 20px;
+    height: 46px;
+    margin-top: 20px;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.resume-modul-upload {
+    background-color: transparent;
+    border: 2px solid #68cce8;
+    border-radius: 21px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-family: "almoni_dl_aaabold";
+    font-size: 18px;
+    height: 46px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 15px;
+}
+
+.resume-modul-upload.selected {
+	background-color: #68cce8;
+	color: #001e57;
+}
+
+.resume-modul-upload-icon {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}
+
+.resume-modul--upload-text {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 185px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#resume-modul-upload-computer .apply-job-upload-icon {
+    background: transparent url("../images/sprite.png") repeat scroll -166px -5px;
+}
+
+#resume-modul-upload-dropbox .apply-job-upload-icon {
+    background: transparent url("../images/sprite.png") repeat scroll -166px -37px;
+}
+
+#resume-modul-upload-skydrive .apply-job-upload-icon {
+    background: transparent url("../images/sprite.png") repeat scroll -166px -70px;
+}
+
+#resume-modul-upload-computer.selected .apply-job-upload-icon {
+    background: transparent url("../images/sprite.png") repeat scroll -166px -137px;
+}
+
+#resume-modul-upload-dropbox.selected .apply-job-upload-icon {
+    background: transparent url("../images/sprite.png") repeat scroll -166px -174px;
+}
+
+#resume-modul-upload-skydrive.selected .apply-job-upload-icon {
+    background: transparent url("../images/sprite.png") repeat scroll -166px -207px;
+}
+
+.resume-modul-submit {
+    background-color: #68cce8;
+    border: medium none;
+    border-radius: 22px;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    height: 46px;
+    margin-top: 40px;
+    width: 98px;
+    font-family: "almoni_dl_aaabold";
+}
+.resume-modul-localFile{
+    position: absolute;
+    top: -9999px;
+}
+
+.resume-module-submit-response.resume-modul-content
+{
+    margin-top: 120px;
+    color: white;
+    font-size: 24px;
+}

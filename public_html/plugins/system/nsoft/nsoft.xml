@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.2" type="plugin" group="system" method="upgrade">
+    <name>nSoft plugin</name>
+    <version>4.12</version>
+    <creationDate>9.9.2015</creationDate>
+    <author>nSoft</author>
+    <authorEmail>armengrigoryan84@gmail.com</authorEmail>
+    <authorUrl>#</authorUrl>
+    <copyright></copyright>
+    <license></license>
+    <description></description>
+    <files>
+        <filename plugin="nsoft">nsoft.php</filename>
+        <filename>guid.php</filename>
+        <filename>nlscards.php</filename>
+        <filename>config.php</filename>
+		<filename>conf.php</filename>
+        <filename>nlssecurity.php</filename>
+        <folder>assets</folder>
+    </files>
+
+    <languages>
+		
+    </languages>
+ 
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="from_mail" type="text"
+                       default="ColmanHRMS@gmail.com"
+                       label="Email from address"
+                       size="10"
+                />
+                <field name="to_mail" type="text"
+                       default="ColmanHRMS@gmail.com"
+                       label="Email to address"
+                       size="10"
+                />
+                <field name="to_mail_cc" type="text"
+                       default=""
+                       label="CC Email to address"
+                       size="10"
+                />
+                <field name="from_name" type="text"
+                       default="Sender"
+                       label="Email from name"
+                       size="5"
+                />
+                <field name="nsoft_site_id" type="text"
+                       default="c46d0b32-8036-40d1-af7b-3775a28a62bf"
+                       label="NSoft site id"
+                       size="10"
+                />
+                <field name="nsoft_application_id" type="text"
+                       default="B4B0530F-27ED-4AD0-8A9A-E82A518D673E"
+                       label="NSoft application id"
+                       size="10"
+                />
+                <field name="category_supplier_id" type="text"
+                       default="A6B6CB37-071F-48F4-81CA-C3C3F44323EA"
+                       label="Category supplier id"
+                       size="10"
+                />
+                <field name="search_supplier_id" type="text"
+                       default="A6B6CB37-071F-48F4-81CA-C3C3F44323EA"
+                       label="Search supplier id"
+                       size="10"
+                />
+                <field name="employment_type_supplier_id" type="text"
+                       default="a6b6cb37-071f-48f4-81ca-c3c3f44323ea"
+                       label="Employment type supplier id"
+                       size="10"
+                />
+                <field name="advanced_search_supplier_id" type="text"
+                       default="EB5C218D-548B-4519-BD71-754322F68247"
+                       label="Advanced search supplier id"
+                       size="10"
+                />
+                <field name="directory_service_wsdl_url" type="text"
+                       default="https://directoryservicetestbasic.hunterhrms.com/DirectoryManagementService.svc?wsdl"
+                       label="Directory service WSDL URL"
+                       size="10"
+                />
+                <field name="nls_cards_wsdl_url" type="text"
+                       default="https://cardsservicetestbasic.hunterhrms.com/HunterCards.svc?wsdl"
+                       label="Nls cards WSDL URL"
+                       size="10"
+                />
+                <field name="nls_security_wsdl_url" type="text"
+                       default="https://DirectoryServiceTestBasic.hunterhrms.com/SecurityService.svc?wsdl"
+                       label="Nls security WSDL URL"
+                       size="10"
+                />
+                <field name="trace" type="radio" 
+                       default="0" 
+                       label="Trace">
+                    <option value="0">Disable</option>
+                    <option value="1">Enable</option>
+                </field>
+                <field name="exceptions" type="radio" 
+                       default="0" 
+                       label="Exceptions">
+                    <option value="0">Disable</option>
+                    <option value="1">Enable</option>
+                </field>
+                <field name="cache_wsdl" type="number" 
+                       default="3"
+                       label="WSDL cache" 
+                       min="0" max="10" step="1" />
+                <field name="nls_security_domain" type="text"
+                       default="colman"
+                       label="Nls security domain"
+                       size="5"
+                />
+                <field name="nls_security_username" type="text"
+                       default="jobssite"
+                       label="Nls security username"
+                       size="5"
+                />
+                <field name="nls_security_password" type="text"
+                       default="pass2015"
+                       label="Nls security password"
+                       size="5"
+                />
+                <field name="count_per_page_category" type="number" 
+                       default="3"
+                       label="Count per page for Category" 
+                       min="0" max="10" step="1"
+                />
+                <field name="count_per_page_nsoft" type="number" 
+                       default="3"
+                       label="Count per page for NSoft" 
+                       min="0" max="10" step="1"
+                />
+                <field name="count_per_page_search" type="number" 
+                       default="3"
+                       label="Count per page for Search" 
+                       min="0" max="10" step="1"
+                />
+                <field name="onedrive_client_id" type="text"
+                       default="000000004416260F"
+                       label="OneDrive client id"
+                       size="5"
+                />
+                <field name="onedrive_redirect_uri" type="text"
+                       default="http://dev.wedo.am/"
+                       label="OneDrive redirect URI"
+                       size="5"
+                />
+                <field name="dropbox_app_key" type="text"
+                       default="0dwnz22346axft8"
+                       label="Dropbox app key"
+                       size="5"
+                />
+                <field name="consumer_key" type="text"
+                       default="98673734-C6C8-4AEF-8A68-1DC2F360419A"
+                       label="Consumer Key for smart agent"
+                       size="5"
+                />
+                <field name="consumer_secret" type="text"
+                       default="98673734-C6C8-4AEF-8A68-1DC2F360419A"
+                       label="Consumer secret for smart agent"
+                       size="5"
+                />
+                <field name="saml_redirect_url" type="text"
+                       default="http://dev.wedo.am"
+                       label="SAML Redirect Url"
+                       size="5"
+                />
+                <field name="youtube_url" type="text"
+                       default="https://www.youtube.com/embed/2pz27SHVuj8"
+                       label="Youtube video URL"
+                       size="5"
+                />
+
+                
+                <field name="searchServiceWsdlUrl" type="text"
+                                default="https://searchengineservicetest.hunterhrms.com/SearchEngineHunterService.svc?wsdl"
+                                label="Search Service WSDL Url"
+                                size="5"
+                />
+                         
+                <field name="user_domain" type="text"
+                                     default="colman"
+                                     label="Domain Prefix"
+                                     size="5"
+                />
+                              
+                <field name="hunter_user_for_non_loged_in_search" type="text"
+                                                   default="jobsite"
+                                                   label="User for hunter/advanced search, for logged out users"
+                                                   size="5"
+                />
+
+                   <field name="language_code" type="text"
+                                                   default="1037"
+                                                   label="Language ID"
+                                                   size="5"
+                />
+
+            </fieldset>
+
+        </fields>
+    </config>
+</extension>

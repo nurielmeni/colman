@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'almoni_dl_aaalight';
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-light.eot');
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-light.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-light.woff2') format('woff2'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-light.woff') format('woff'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-light.ttf') format('truetype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-light.svg#almoni_dl_aaalight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'almoni_dl_aaabold';
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-bold.eot');
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-bold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-bold.woff2') format('woff2'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-bold.woff') format('woff'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-bold.ttf') format('truetype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-bold.svg#almoni_dl_aaabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'almoni_dl_aaablack';
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-black.eot');
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-black.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-black.woff2') format('woff2'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-black.woff') format('woff'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-black.ttf') format('truetype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-black.svg#almoni_dl_aaablack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'almoni_dl_aaaregular';
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-regular.eot');
+    src: url('fonts/AlmoniDlAaa/almoni-dl-aaa-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-regular.woff2') format('woff2'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-regular.woff') format('woff'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-regular.ttf') format('truetype'),
+         url('fonts/AlmoniDlAaa/almoni-dl-aaa-regular.svg#almoni_dl_aaaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

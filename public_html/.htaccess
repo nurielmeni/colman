@@ -1,0 +1,30 @@
+#force https:
+
+## RewriteEngine On
+## RewriteCond %{HTTPS} off
+## RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+## 
+## #Header always set Content-Security-Policy "upgrade-insecure-requests;"
+## 
+## ## Mod_rewrite in use.
+## 
+## RewriteRule ^simplesaml/(.*) /simplesamlphp/www/$1 [L]
+## 
+## SetEnv SIMPLESAMLPHP_CONFIG_DIR /home/colman/public_html/simplesamlphp/config
+## 
+## Alias /simplesaml /home/colman/public_html/simplesamlphp/www
+## 
+## <Directory /home/colman/public_html/simplesamlphp/www>
+## 	<IfModule !mod_authz_core.c>
+## 		# For Apache 2.2:
+## 		Order allow,deny
+## 		Allow from all
+## 	</IfModule>
+## 	<IfModule mod_authz_core.c>
+## 		# For Apache 2.4:
+## 		Require all granted
+## 	</IfModule>
+## </Directory>
+## 
+## 
+## 

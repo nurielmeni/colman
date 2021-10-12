@@ -1,0 +1,107 @@
+footer {
+    background: rgba(0, 0, 0, 0) url("../images/pattern1.jpg") repeat scroll 0 0;
+    display: inline-block;
+    width: 100%;
+    height: 510px;
+}
+
+.footer-container {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 15px;
+    position: relative;
+    width: 1170px;
+}
+
+.footer-container a {
+    text-decoration: none;
+    color: #000;
+}
+
+.footer-top {
+    margin-top: 70px;
+}
+
+.footer-top>ul>li {
+    display: inline-block;
+    margin: 5px 13px;
+    vertical-align: top;
+    width: 165px;
+}
+
+.footer-top>ul>li:first-child {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+.footer-top>ul>li:last-child {
+    margin-left: 0;
+}
+
+.menu-footer-top {
+
+}
+
+.menu-footer-top li {
+    list-style: outside none none;
+    margin-bottom: 10px;
+}
+
+.menu-footer-top a {
+    cursor: pointer;
+}
+
+.footer-title {
+    display: block;
+    font-family: "almoni_dl_aaabold";
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.footer-bottom {
+    bottom: 40px;
+    position: absolute;
+}
+
+.footer-logo {
+    display: inline-block;
+}
+
+.footer-left {
+    display: inline-block;
+    margin-right: 75px;
+    vertical-align: top;
+}
+
+.footer-copyright {
+    margin-top: 5px;
+}
+
+.menu-footer-bottom {
+    margin-top: 15px;
+}
+
+.menu-footer-bottom li {
+    display: inline-block;
+    margin-left: -4px;
+}
+
+.menu-footer-bottom li:first-child {
+    margin-left: -5px;
+}
+
+.menu-footer-bottom a {
+    border-left: 1px solid #d0d0d0;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.menu-footer-bottom li:first-child a {
+    padding-right: 0;
+}
+
+.menu-footer-bottom li:last-child a {
+    border-left: medium none;
+}

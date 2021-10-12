@@ -1,0 +1,257 @@
+#popup_div {
+    width: 1140px;
+    margin: 50px auto;
+}
+
+.popup_head {
+    border-radius: 15px 15px 0 0;
+    display: inline-block;
+    height: 163px;
+    position: relative;
+    width: 100%;
+}
+
+.popup_icon {
+    border: 0 none;
+    height: 70px;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 70px;
+}
+
+.popup_tmb {
+    background-color: #efefef;
+    border-radius: 15px;
+    box-shadow: 0 2px 2px lightgray;
+    box-sizing: border-box;
+    min-height: 116px;
+    margin: 34px 0;
+    width: 100%;
+    position: relative;
+}
+
+.popup_left {
+    bottom: 37px;
+    height: auto;
+    left: 0px;
+    position: absolute;
+    top: 37px;
+    margin: 0px 50px;
+}
+
+.popup_btn {
+    background-color: transparent;
+    border: 2px solid #001f5b;
+    border-radius: 22px;
+    color: #001f5b;
+    cursor: pointer;
+    font-family: almoni_dl_aaabold;
+    font-size: 18px;
+    height: 44px;
+    margin-right: 5px;
+    padding: 0 10px;
+    max-width: 140px;
+    vertical-align: middle;    
+}
+
+.popup_btn.upload, .popup_btn.agent{
+    margin: 0 100px;
+}
+
+.popup_btn:active {
+    background-color: #001f5b;
+    color: #fff;
+}
+
+.joblist-list-container{
+    position: absolute;
+    top: 150px;
+    left: 10%;
+    border: 1px solid #EFEFEF;
+    padding: 30px;
+    background-color: #fff;
+    z-index: 9999;
+}
+
+.popup_close {
+    background: rgba(0, 0, 0, 0) url("close.png") repeat scroll 0 0;
+    border: 0 none;
+    cursor: pointer;
+    height: 74px;
+    left: -20px;
+    position: absolute;
+    top: -17px;
+    width: 74px;
+}
+
+.popup_content {
+    background-color: #fcfcfc;
+    border-radius: 0 0 15px 15px;
+    display: inline-block;
+    width: 100%;
+}
+
+.popup_content ul {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 30px 50px;
+    width: 1040px;
+}
+
+.popup_content ul.item {
+    display: inline-block;
+    list-style: none;
+
+    width: 100%;
+}
+
+.popup_right {
+    display: inline-block;
+    /*width: 570px;*/
+    margin: 30px 50px;
+}
+
+li.joblist-short-details .popup_right {
+    width: 570px;
+}
+
+.popup_filename {
+    color: #001f5b;
+    font-family: almoni_dl_aaablack;
+    font-size: 30px;
+}
+
+.joblist-long-details .popup_filename {
+    font-size: 40px;
+}
+
+.popup_datetime {
+    color: #001f5b;
+    font-family: almoni_dl_aaaregular;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.popup_datetime span {
+  display: inline-block;
+}
+
+.popup_head_numb {
+    display: block;
+    font-family: almoni_dl_aaalight;
+    font-size: 93px;
+    line-height: 0.9;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.popup_head_text {
+    display: block;
+    font-family: almoni_dl_aaablack;
+    font-size: 25px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.popup_horizontal_line {
+    background-color: #68CCE8;
+    height: 2px;
+    margin: 10px 0;
+    width: 67px;
+}
+
+.popup_details_buttons {
+    margin-top: 50px;
+}
+
+.popup_details_buttons .joblist-apply {
+    border: none;
+    background-color: #68CCE8;
+}
+
+.popup_map {
+    border-radius: 10px;
+    height: 100%;
+    width: 250px;
+}
+
+.popup_noresult {
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 30px;
+}
+
+.joblist-long-details{
+    min-height: 220px;
+}
+
+.joblist-description {
+    color: #001f5b;
+    font-size: 20px;
+}
+
+.cv .popup_head {
+    background-color: #00a4c8;
+}
+.cv .popup_head {
+    background-color: #00a4c8;
+}
+.cv .popup_icon {
+    background: rgba(0, 0, 0, 0) url("sprite.png") repeat scroll -318px -95px;
+}
+
+.files .popup_head {
+    background-color: #00a4c8;
+}
+
+.files .popup_icon {
+    background: rgba(0, 0, 0, 0) url("sprite.png") repeat scroll -318px -277px;
+}
+
+.new-jobs .popup_head {
+    background-color: #2EAB54;
+}
+
+.new-jobs .popup_icon {
+    background: rgba(0, 0, 0, 0) url("sprite.png") repeat scroll -318px -189px;
+}
+
+.filled-jobs .popup_head {
+    background-color: #F27176;
+}
+
+.filled-jobs .popup_icon {
+    background: rgba(0, 0, 0, 0) url("sprite.png") repeat scroll -7px -165px;
+}
+
+.advanced-search .popup_head {
+    background-color: #F27176;
+}
+
+.resume-success .popup_head {
+    background-color: #2EAB54;
+}
+
+.resume-success-content {
+    text-align: center;
+    margin: 40px 0px;
+    font-size: 30px;
+}
+
+.already-applied-job, .joj-is-closed {
+    display: inline-block;
+    margin-right: 10px;
+    color: #001f5b;
+}
+
+.joblist-requirement, .joblist-skills, .joblist-rank {
+    color: #001f5b;
+    font-family: almoni_dl_aaaregular;
+    font-size: 20px;
+}
+
+.joblist-rank {
+    font-size: 16px;
+}

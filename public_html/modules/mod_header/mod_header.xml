@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Niloosoft Header module</name>
+    <author>nSoft</author>
+    <version>1.0.0</version>
+    <description>Header module</description>
+    <files>
+        <filename>mod_header.xml</filename>
+        <filename module="mod_header">mod_header.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <folder>controllers</folder>
+        <folder>assets</folder>
+    </files>
+    <config>
+    </config>
+</extension>

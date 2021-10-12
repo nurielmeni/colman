@@ -1,0 +1,190 @@
+<?php
+/**
+ * SAML 2.0 remote IdP metadata for simpleSAMLphp.
+ *
+ * Remember to remove the IdPs you don't use from this file.
+ *
+ * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-remote 
+ */
+
+/*
+ * Guest IdP. allows users to sign up and register. Great for testing!
+ */
+$metadata['https://openidp.feide.no'] = array(
+	'name' => array(
+		'en' => 'Feide OpenIdP - guest users',
+		'no' => 'Feide Gjestebrukere',
+	),
+	'description'          => 'Here you can login with your account on Feide RnD OpenID. If you do not already have an account on this identity provider, you can create a new one by following the create new account link and follow the instructions.',
+
+	'SingleSignOnService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb'
+);
+$metadata['https://is.colman.ac.il/nidp/saml2/metadata'] = array (
+  'entityid' => 'https://is.colman.ac.il/nidp/saml2/metadata',
+  'name' => 
+  array (
+    'en' => 'Colman',
+  ),
+  'description' => 
+  array (
+    'en' => 'Colman',
+  ),
+  'OrganizationName' => 
+  array (
+    'en' => 'Colman',
+  ),
+  'OrganizationDisplayName' => 
+  array (
+    'en' => 'Colman',
+  ),
+  'url' => 
+  array (
+    'en' => 'http://www.colman.ac.il',
+  ),
+  'OrganizationURL' => 
+  array (
+    'en' => 'http://www.colman.ac.il',
+  ),
+  'contacts' => 
+  array (
+    0 => 
+    array (
+      'contactType' => 'other',
+    ),
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'SingleSignOnService' => 
+  array (
+    0 => 
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://is.colman.ac.il/nidp/saml2/sso',
+    ),
+    1 => 
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://is.colman.ac.il/nidp/saml2/sso',
+    ),
+  ),
+  'SingleLogoutService' => 
+  array (
+    0 => 
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://is.colman.ac.il/nidp/saml2/slo',
+      'ResponseLocation' => 'https://is.colman.ac.il/nidp/saml2/slo_return',
+    ),
+    1 => 
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+      'Location' => 'https://is.colman.ac.il/nidp/saml2/soap',
+    ),
+    2 => 
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://is.colman.ac.il/nidp/saml2/slo',
+      'ResponseLocation' => 'https://is.colman.ac.il/nidp/saml2/slo_return',
+    ),
+  ),
+  'ArtifactResolutionService' => 
+  array (
+    0 => 
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+      'Location' => 'https://is.colman.ac.il/nidp/saml2/soap',
+      'index' => 0,
+      'isDefault' => true,
+    ),
+  ),
+  'keys' => 
+  array (
+    0 => 
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => '
+MIIGYDCCBUigAwIBAgIQJGFcIQc7yeFfExLBda8rRzANBgkqhkiG9w0BAQsFADBC
+MQswCQYDVQQGEwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UEAxMS
+UmFwaWRTU0wgU0hBMjU2IENBMB4XDTE2MTIwODAwMDAwMFoXDTIwMDEzMDIzNTk1
+OVowGTEXMBUGA1UEAwwOKi5jb2xtYW4uYWMuaWwwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDQDlsz/VDzjvS0IsBHDmJOw8Km4+TbHovk5YdL8z+RY6wB
+0F3KqsDMtGY+umwy3fqcRnp6Mfkcz0qB+roCRXmPX0aUvlTfY+FDkOtLl9SKXUl+
+THBrrhKksNq+kAlPQGauowbJPKN23x8dAOtWL3eugqL1KAD+GSlKpxbYNNHoj09V
+wWJ+crcivEa8eWWWfpl+ealvsqNlK9o6TFaDniI9DlsRYvxrdUfhU4U6aNqNVZUp
+8cEXnttSG8F86OnKQRqgy/fismrmRgmc1CvBYegrZJUwRFGXrhlhfOBIYK9EgCjK
+4kRSBue4QApxrlvlOxSDi7Yl9p4to3Xxy7iyK+tdAgMBAAGjggN5MIIDdTAnBgNV
+HREEIDAegg4qLmNvbG1hbi5hYy5pbIIMY29sbWFuLmFjLmlsMAkGA1UdEwQCMAAw
+KwYDVR0fBCQwIjAgoB6gHIYaaHR0cDovL2dwLnN5bWNiLmNvbS9ncC5jcmwwbwYD
+VR0gBGgwZjBkBgZngQwBAgEwWjAqBggrBgEFBQcCARYeaHR0cHM6Ly93d3cucmFw
+aWRzc2wuY29tL2xlZ2FsMCwGCCsGAQUFBwICMCAMHmh0dHBzOi8vd3d3LnJhcGlk
+c3NsLmNvbS9sZWdhbDAfBgNVHSMEGDAWgBSXwidQnsLJ7AyIMsh8reKmAU/abzAO
+BgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMFcG
+CCsGAQUFBwEBBEswSTAfBggrBgEFBQcwAYYTaHR0cDovL2dwLnN5bWNkLmNvbTAm
+BggrBgEFBQcwAoYaaHR0cDovL2dwLnN5bWNiLmNvbS9ncC5jcnQwggH2BgorBgEE
+AdZ5AgQCBIIB5gSCAeIB4AB2AN3rHSt6DU+mIIuBrYFocH4ujp0B1VyIjT0RxM22
+7L7MAAABWN7cb6cAAAQDAEcwRQIhAINfkkrf4huNNc3y8JqAdhWFAAotffvp4xmo
+6abAjKSbAiAyEh+91/Rz3JzgKfKzZsj8sYJ+ksJuTYFI8hpiTfJZ6gB2AO5Lvbd1
+zmC64UJpH6vhnmajD35fsHLYgwDEe4l6qP3LAAABWN7cb+sAAAQDAEcwRQIhAKM/
+97KnUwp4Yb4pgJTPE5aIJJ/FayS5oRW0+mQXQd6vAiAe1UVinXNLg+GsDJWCr8A4
+/0laLqhDJoqI3ETTz+pJkwB2ALx44d/F9jxoRkkzTaEPoV8JeWkgCcCBtPP2kX8+
+2bilAAABWN7ccJQAAAQDAEcwRQIgPtFXA6zZVZsvgl/AuytPDu6R2Jjrc0844uGq
+ODygq4wCIQCn6BmY/hFOCpO92YSM5hkkGIJRFctEWFqKnVvrpBm3oQB2AKS5CZC0
+GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQAAABWN7cb8EAAAQDAEcwRQIhAIn5
+Y+4slAD/KNm+O9dotm8RrkyECsKl1zegidASqxVBAiBaJrZJ5ZmGbwl5U8EPV228
+NdMyEKZrOpq0v8jXDj1cHTANBgkqhkiG9w0BAQsFAAOCAQEAh6eDSD6cl39Bbh5b
+bUs7BfnLZr4m6dNHVsz7d3/LpnJrFAhDZJPgN5qR4fA/ns/+xiiMng7NXxfzgkVY
+DPrN0WrN2dWI7ZXG0ufAkn4Tfxtq0GhtuRMu541MIqiGHRf3C8BYEC1AIi6euVbH
+oc+Ulcl7IJYOMbHc0Ifm1Kw49B3fCGaBwsPGEUv9x4vpuR39KWlcKf1DlX6gTaAh
+PXOboXJwscrL4EEsRoqDUs/RU+vPNdz8Lw5FBDCgsQnkz9O+A3Ba3EC5Vb6TbIm/
+wVP3TN1E1o27tIIOfELtQpcNp6lmM0T789DPQLG8ChlJIcIUITSF/uVXr2y/qF27
+coy+8g==
+',
+    ),
+    1 => 
+    array (
+      'encryption' => true,
+      'signing' => false,
+      'type' => 'X509Certificate',
+      'X509Certificate' => '
+MIIGYDCCBUigAwIBAgIQJGFcIQc7yeFfExLBda8rRzANBgkqhkiG9w0BAQsFADBC
+MQswCQYDVQQGEwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UEAxMS
+UmFwaWRTU0wgU0hBMjU2IENBMB4XDTE2MTIwODAwMDAwMFoXDTIwMDEzMDIzNTk1
+OVowGTEXMBUGA1UEAwwOKi5jb2xtYW4uYWMuaWwwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDQDlsz/VDzjvS0IsBHDmJOw8Km4+TbHovk5YdL8z+RY6wB
+0F3KqsDMtGY+umwy3fqcRnp6Mfkcz0qB+roCRXmPX0aUvlTfY+FDkOtLl9SKXUl+
+THBrrhKksNq+kAlPQGauowbJPKN23x8dAOtWL3eugqL1KAD+GSlKpxbYNNHoj09V
+wWJ+crcivEa8eWWWfpl+ealvsqNlK9o6TFaDniI9DlsRYvxrdUfhU4U6aNqNVZUp
+8cEXnttSG8F86OnKQRqgy/fismrmRgmc1CvBYegrZJUwRFGXrhlhfOBIYK9EgCjK
+4kRSBue4QApxrlvlOxSDi7Yl9p4to3Xxy7iyK+tdAgMBAAGjggN5MIIDdTAnBgNV
+HREEIDAegg4qLmNvbG1hbi5hYy5pbIIMY29sbWFuLmFjLmlsMAkGA1UdEwQCMAAw
+KwYDVR0fBCQwIjAgoB6gHIYaaHR0cDovL2dwLnN5bWNiLmNvbS9ncC5jcmwwbwYD
+VR0gBGgwZjBkBgZngQwBAgEwWjAqBggrBgEFBQcCARYeaHR0cHM6Ly93d3cucmFw
+aWRzc2wuY29tL2xlZ2FsMCwGCCsGAQUFBwICMCAMHmh0dHBzOi8vd3d3LnJhcGlk
+c3NsLmNvbS9sZWdhbDAfBgNVHSMEGDAWgBSXwidQnsLJ7AyIMsh8reKmAU/abzAO
+BgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMFcG
+CCsGAQUFBwEBBEswSTAfBggrBgEFBQcwAYYTaHR0cDovL2dwLnN5bWNkLmNvbTAm
+BggrBgEFBQcwAoYaaHR0cDovL2dwLnN5bWNiLmNvbS9ncC5jcnQwggH2BgorBgEE
+AdZ5AgQCBIIB5gSCAeIB4AB2AN3rHSt6DU+mIIuBrYFocH4ujp0B1VyIjT0RxM22
+7L7MAAABWN7cb6cAAAQDAEcwRQIhAINfkkrf4huNNc3y8JqAdhWFAAotffvp4xmo
+6abAjKSbAiAyEh+91/Rz3JzgKfKzZsj8sYJ+ksJuTYFI8hpiTfJZ6gB2AO5Lvbd1
+zmC64UJpH6vhnmajD35fsHLYgwDEe4l6qP3LAAABWN7cb+sAAAQDAEcwRQIhAKM/
+97KnUwp4Yb4pgJTPE5aIJJ/FayS5oRW0+mQXQd6vAiAe1UVinXNLg+GsDJWCr8A4
+/0laLqhDJoqI3ETTz+pJkwB2ALx44d/F9jxoRkkzTaEPoV8JeWkgCcCBtPP2kX8+
+2bilAAABWN7ccJQAAAQDAEcwRQIgPtFXA6zZVZsvgl/AuytPDu6R2Jjrc0844uGq
+ODygq4wCIQCn6BmY/hFOCpO92YSM5hkkGIJRFctEWFqKnVvrpBm3oQB2AKS5CZC0
+GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQAAABWN7cb8EAAAQDAEcwRQIhAIn5
+Y+4slAD/KNm+O9dotm8RrkyECsKl1zegidASqxVBAiBaJrZJ5ZmGbwl5U8EPV228
+NdMyEKZrOpq0v8jXDj1cHTANBgkqhkiG9w0BAQsFAAOCAQEAh6eDSD6cl39Bbh5b
+bUs7BfnLZr4m6dNHVsz7d3/LpnJrFAhDZJPgN5qR4fA/ns/+xiiMng7NXxfzgkVY
+DPrN0WrN2dWI7ZXG0ufAkn4Tfxtq0GhtuRMu541MIqiGHRf3C8BYEC1AIi6euVbH
+oc+Ulcl7IJYOMbHc0Ifm1Kw49B3fCGaBwsPGEUv9x4vpuR39KWlcKf1DlX6gTaAh
+PXOboXJwscrL4EEsRoqDUs/RU+vPNdz8Lw5FBDCgsQnkz9O+A3Ba3EC5Vb6TbIm/
+wVP3TN1E1o27tIIOfELtQpcNp6lmM0T789DPQLG8ChlJIcIUITSF/uVXr2y/qF27
+coy+8g==
+',
+    ),
+  ),
+);

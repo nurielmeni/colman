@@ -1,0 +1,275 @@
+
+.apply-job {
+    background-color: #001e57;
+    display: inline-block;
+    min-width: 780px;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+}
+
+.apply-job form {
+    text-align: center;
+}
+
+.apply-job-title-container {
+    margin: 47px auto 0;
+    width: 780px;
+}
+
+.apply-job-title {
+    color: #fff;
+    font-family: "almoni_dl_aaablack";
+    font-size: 60px;
+    text-align: center;
+}
+
+.apply-job-horizontal-line {
+    background-color: #00a4c8;
+    height: 2px;
+    margin: 0 auto;
+    width: 77px;
+}
+
+.apply-job-subtitle {
+    color: #fff;
+    font-size: 30px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.apply-job-content {
+    height: 500px;
+    margin: 40px auto 0;
+    width: auto !important;
+}
+
+.apply-job-content-container {
+    display: inline-block;
+    height: 60%;
+    margin-left: -4px;
+    vertical-align: top;
+}
+
+.apply-job-content-container.upload .apply-job-bottom{
+margin-top: 0;
+}
+
+.apply-job-content-container.comments{
+    height: 40%;
+    width: 780px;
+}
+
+.apply-job-content-container:first-child {
+    margin-left: -5px;
+}
+
+.apply-job-box {
+    background-color: #00246a;
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    margin: 0 15px;
+    padding: 20px 50px;
+    position: relative;
+}
+
+.apply-job-content-container.comments .apply-job-box {
+    margin-top: 30px;
+}
+
+.apply-job-content-container.comments textArea{
+    width: 100%;
+    border: 2px solid #68cce8;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 1;
+    padding: 5px;
+    font-family: "almoni_dl_aaaregular";
+}
+
+.apply-job-button-container {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.apply-job-top div {
+    display: inline-block;
+    margin-top: 8px;
+    padding-top: 10px;
+    vertical-align: top;
+}
+
+.apply-job-top div.apply-job-nopadding {
+    padding-top: 0;
+}
+
+.apply-job-bottom {
+    margin-top: 40px;
+}
+
+.apply-job-text {
+    color: #fff;
+    font-size: 20px;
+}
+
+.apply-job-subtext {
+    color: #fff;
+    font-size: 16px;
+}
+
+.apply-job-upload , .apply-job-upload-select{
+    background-color: transparent;
+    border: 2px solid #68cce8;
+    border-radius: 21px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-family: "almoni_dl_aaabold";
+    font-size: 20px;
+    height: 46px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 15px;
+    overflow: hidden;
+}
+
+.apply-job-upload.selected {
+	background-color: #68cce8;
+	color: #001e57;
+}
+
+.apply-job-upload-icon {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}
+
+.apply-job-upload-text {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 185px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.apply-job-upload-computer .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -5px;
+}
+
+.apply-job-upload-dropbox .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -37px;
+}
+
+.apply-job-upload-skydrive .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -70px;
+}
+
+.apply-job-upload-file1 .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -103px;
+}
+
+.apply-job-upload-file2 .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -103px;
+}
+
+.apply-job-upload-computer.selected .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -137px;
+}
+
+.apply-job-upload-dropbox.selected .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -174px;
+}
+
+.apply-job-upload-skydrive.selected .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -207px;
+}
+
+.apply-job-upload-file1:hover .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -240px;
+}
+
+.apply-job-upload-file2:hover .apply-job-upload-icon {
+    background: transparent url("sprite.png") repeat scroll -166px -240px;
+}
+
+.apply-job-submit {
+    background-color: #68cce8;
+    border: medium none;
+    border-radius: 22px;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    height: 46px;
+    font-family: "almoni_dl_aaabold";
+    padding: 0 25px;
+}
+
+.apply-job-localFile{
+    position: absolute;
+    top: -9999px;
+}
+
+
+
+.apply-job-upload-select .cs-options {
+    background-color: #68cce8;
+    border-radius: 0px 0px 21px 21px;
+}
+
+.apply-job-upload-select.cs-active > span:before {
+    color: #001f5b;
+}
+
+.apply-job-upload-select span {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.apply-job-upload-select ul span {
+    margin-bottom: 4px;
+    margin-top: 4px;
+    padding: 8px 20px;
+}
+
+.apply-job-upload-select ul li.cs-focus span, .apply-job-upload-select ul li span:hover {
+    background-color: #70DBF9;
+}
+
+.apply-job-upload-select > span {
+    border: 2px solid #68cce8;
+    border-radius: 21px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 20px;
+    height: 46px;
+    padding-left: 60px;
+    padding-right: 15px;
+    width: 260px;
+}
+
+.apply-job-upload-select > span::before {
+    color: #68CCE8;
+    font-size: 30px;
+    left: 15px;
+}
+
+.apply-job-upload-select {
+    width: 260px;
+    height: 46px;
+}
+
+.apply-job-upload-select .cs-selected span::before {
+    font-size: 15px;
+    left: 5px;
+}
+body.wait *, body.wait
+{
+    cursor: progress !important;
+}

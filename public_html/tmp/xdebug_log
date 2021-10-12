@@ -1,0 +1,112 @@
+[7] Log opened at 2021-10-11 07:48:53.845537
+[7] [Step Debug] INFO: Connecting to configured address/port: host.docker.internal:9003.
+[7] [Step Debug] ERR: Time-out connecting to debugging client, waited: 200 ms. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(
+[7] Log closed at 2021-10-11 07:48:54.052873
+
+[8] Log opened at 2021-10-11 08:01:24.204035
+[8] [Step Debug] INFO: Connecting to configured address/port: host.docker.internal:9003.
+[8] [Step Debug] ERR: Time-out connecting to debugging client, waited: 200 ms. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(
+[8] Log closed at 2021-10-11 08:01:24.412013
+
+[8] Log opened at 2021-10-11 08:59:02.542897
+[8] [Step Debug] INFO: Connecting to configured address/port: host.docker.internal:9003.
+[8] [Step Debug] INFO: Connected to debugging client: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port). :-)
+[8] [Step Debug] -> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" fileuri="file:///makedb.php" language="PHP" xdebug:language_version="7.3.31" protocol_version="1.0" appid="8" idekey="docker"><engine version="3.1.0"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[https://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2021 by Derick Rethans]]></copyright></init>
+
+[8] [Step Debug] <- feature_set -i 1 -n resolved_breakpoints -v 1
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="1" feature="resolved_breakpoints" success="1"></response>
+
+[8] [Step Debug] <- feature_set -i 2 -n notify_ok -v 1
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="2" feature="notify_ok" success="1"></response>
+
+[8] [Step Debug] <- feature_set -i 3 -n extended_properties -v 1
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="3" feature="extended_properties" success="1"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 4 -t line -f file:///var/www/html/plugins/system/nsoft/assets/js/jobList/jquery.joblist.js -n 79
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="4" id="80001" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 5 -t line -f file:///var/www/html/plugins/system/nsoft/assets/js/jobList/jquery.joblist.js -n 128
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="5" id="80002" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 6 -t line -f file:///var/www/html/plugins/system/nsoft/assets/js/jobList/jquery.joblist.js -n 359
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="6" id="80003" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 7 -t line -f file:///var/www/html/modules/mod_category/assets/js/mod_category.js -n 20
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="7" id="80004" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 8 -t line -f file:///var/www/html/modules/mod_category/mod_category.php -n 25
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="8" id="80005" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 9 -t line -f file:///var/www/html/modules/mod_nsoft/assets/js/mod_nsoft.js -n 12
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="9" id="80006" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 10 -t line -f file:///var/www/html/modules/mod_nsoft/assets/js/mod_nsoft.js -n 80
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="10" id="80007" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 11 -t line -f file:///var/www/html/modules/mod_nsoft/assets/js/mod_nsoft.js -n 142
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="11" id="80008" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 12 -t line -f file:///var/www/html/modules/mod_nsoft/assets/js/mod_nsoft.js -n 170
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="12" id="80009" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 13 -t line -f file:///var/www/html/modules/mod_nsoft/assets/js/mod_nsoft.js -n 211
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="13" id="80010" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 14 -t line -f file:///var/www/html/modules/mod_search_advanced/assets/js/mod_search_advanced.js -n 63
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="14" id="80011" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 15 -t line -f file:///var/www/html/modules/mod_search_advanced/assets/js/mod_search_advanced.js -n 178
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="15" id="80012" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 16 -t line -f file:///var/www/html/modules/mod_search_advanced/assets/js/mod_search_advanced.js -n 235
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="16" id="80013" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 17 -t line -f file:///var/www/html/modules/mod_search_advanced/assets/js/mod_search_advanced.js -n 268
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="17" id="80014" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 18 -t line -f file:///var/www/html/modules/mod_search_advanced/mod_search_advanced.php -n 26
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="18" id="80015" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 19 -t line -f file:///var/www/html/modules/mod_search/assets/js/mod_search.js -n 53
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="19" id="80016" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 20 -t line -f file:///var/www/html/modules/mod_search/assets/js/mod_search.js -n 101
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="20" id="80017" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 21 -t line -f file:///var/www/html/modules/mod_search/assets/js/mod_search.js -n 283
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="21" id="80018" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 22 -t line -f file:///var/www/html/modules/mod_search/mod_search.php -n 26
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="22" id="80019" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 23 -t line -f file:///var/www/html/modules/mod_upload_resume/assets/js/mod_upload_resume.js -n 108
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="23" id="80020" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 24 -t line -f file:///var/www/html/modules/mod_upload_resume/mod_upload_resume.php -n 26
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="24" id="80021" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 25 -t line -f file:///var/www/html/simplesamlphp/lib/SimpleSAML/Auth/Simple.php -n 136
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="25" id="80022" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 26 -t line -f file:///var/www/html/modules/mod_nsoft/controllers/apiController.php -n 67
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="26" id="80023" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 27 -t line -f file:///var/www/html/plugins/system/nsoft/nlscards.php -n 858
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="27" id="80024" resolved="unresolved"></response>
+
+[8] [Step Debug] <- breakpoint_set -i 28 -t line -f file:///var/www/html/plugins/system/nsoft/nlscards.php -n 861
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="breakpoint_set" transaction_id="28" id="80025" resolved="unresolved"></response>
+
+[8] [Step Debug] <- run -i 29
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="run" transaction_id="29" status="stopping" reason="ok"></response>
+
+[8] [Step Debug] <- stop -i 30
+[8] [Step Debug] -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="https://xdebug.org/dbgp/xdebug" command="stop" transaction_id="30" status="stopped" reason="ok"></response>
+
+[8] Log closed at 2021-10-11 08:59:02.707299
+
+[8] Log opened at 2021-10-12 11:05:00.420749
+[8] [Step Debug] INFO: Connecting to configured address/port: host.docker.internal:9003.
+[8] [Step Debug] ERR: Time-out connecting to debugging client, waited: 200 ms. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(
+[8] Log closed at 2021-10-12 11:05:01.436757
+

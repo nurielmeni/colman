@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Niloosoft Category module</name>
+    <author>nSoft</author>
+    <version>1.0.0</version>
+    <description>This module shows jobs by categories.</description>
+    <files>
+        <filename>mod_category.xml</filename>
+        <filename module="mod_category">mod_category.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>assets/images/pattern1.jpg</filename>
+        <filename>assets/images/sprite.png</filename>
+        <filename>assets/css/style.css</filename>
+        <filename>assets/js/mod_category.js</filename>
+
+        <filename>controllers/apiController.php</filename>
+        <filename>controllers/categoryController.php</filename>
+        <filename>controllers/index.html</filename>
+    </files>
+    <config>
+    </config>
+</extension>
