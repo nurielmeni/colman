@@ -47,7 +47,7 @@ class JConfig {
 	public $MetaKeys = '';
 	public $MetaTitle = '1';
 	public $MetaAuthor = '1';
-	public $MetaVersion = '0';
+	public $MetaVersion = '1';
 	public $robots = '';
 	public $sef = '1';
 	public $sef_rewrite = '0';
@@ -90,4 +90,14 @@ class JConfig {
 	public $cookie_path = '';
 	public $asset_id = '1';
 	public $cache_platformprefix = '0';
+	public $debug_lang_const = '1';
+	public $behind_loadbalancer = '0';
+	public $replyto = '';
+	public $replytoname = '';
+	public $session_redis_persist = '1';
+	public $session_redis_server_host = 'localhost';
+	public $session_redis_server_port = '6379';
+	public $session_redis_server_db = '0';
+	public $shared_session = '0';
+	public $block_floc = '1';
 }

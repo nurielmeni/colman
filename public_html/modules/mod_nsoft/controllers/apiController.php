@@ -1,7 +1,7 @@
 <?php
 
 defined('_JEXEC') or die;
-
+use Joomla\CMS\Log\Log;
 class apiController extends nlsCards {
 
     public function __construct($username_token, $password_token) {
@@ -69,18 +69,26 @@ class apiController extends nlsCards {
     }
 
     public function getJobContentAction($params) {
-
+        Log::add('function: getJobContentAction', Log::DEBUG, 'colman-slowness');
         $from = intval($params['lastId']) * intval($params['countPerPage'] - 1) + 1;
         $to = $from + intval($params['countPerPage'] - 1);
 
         if ($params['cont_type'] === "filled-jobs") {
+            Log::add('filled-jobs: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
             $listData = $this->getFilledJobsList($this->user_id, $from, $to);
+            Log::add('filled-jobs: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
         } elseif ($params['cont_type'] === "new-jobs") {
+            Log::add('new-jobs: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
             $listData = $this->getNewJobsList($params['lastId'] * ($params['countPerPage'] - 1), $params['countPerPage']);
+            Log::add('new-jobs: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
         } elseif ($params['cont_type'] === "cv") {
+            Log::add('cv: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
             $listData = $this->getCvList($this->user_id);
+            Log::add('cv: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
         } elseif ($params['cont_type'] === "files") {
+            Log::add('files: start: ' . microtime(), Log::DEBUG, 'colman-slowness');
             $listData = $this->getFiles($this->user_id, $from, $to);
+            Log::add('files: end: ' . microtime(), Log::DEBUG, 'colman-slowness');
         }
         echo json_encode($listData);
         die;
