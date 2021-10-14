@@ -95,6 +95,7 @@ if ($app->input->post->get('type', FALSE) === 'get_api') {
     $params['cont_type'] = $app->input->post->get('cont_type', FALSE);
     $params['lastId'] = $app->input->post->get('lastId', FALSE);
     $params['countPerPage'] = $app->input->post->get('countPerPage', FALSE);
+    $params['component'] = $app->input->post->get('component', FALSE);
     $params['apply-job-upload-file-type'] = $app->input->post->get('apply-job-upload-file-type', FALSE);
     $params['apply-job-comment'] = $_POST['apply-job-comment'];
 

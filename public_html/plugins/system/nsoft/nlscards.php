@@ -335,6 +335,37 @@ class nlsCards {
         return $filter;
     }
 
+    public function totalJobsCount_hunter(
+        $categoryId,
+        $keyword,
+        $expertise,
+        $employment_type,
+        $customerId,
+        $lastId,
+        $countPerPage, 
+        $suplier_id, 
+        $jobscop = "", 
+        $jobLocation = "", 
+        $date_period = "", 
+        $sendToAgent = false
+    ) {
+        $user_name = "";
+        $hunterStatus = "Temporary";
+        $user_name = $this->session->get("user_credentials")["applicantID"][0];
+        $hunterFilter = $this->hunterFiterBuilder($categoryId, $keyword, $expertise, $employment_type, $customerId, $lastId, $countPerPage, $suplier_id, $jobscop, $jobLocation, $date_period, $sendToAgent);
+        $security = new nlsSecurity();
+        $user_name_and_directory = nsoftConfig::$user_domain . "\\" . $user_name;
+        $auth = $security->AuthenticateByConsumerKeyAndSecretKey($user_name_and_directory);
+        $soap_headers = [
+            new SoapHeader('_', 'NiloosoftCred1', $auth->plainToken),
+            new SoapHeader('_', 'NiloosoftCred2', $auth->signedToken)
+        ];
+        $searchService = new SearchService($soap_headers);
+        $hunter_id = guid::newGuid();
+        $joblist = $searchService->JobHunterExecuteNewQuery2($hunter_id, $lastId, $countPerPage, $hunterFilter);
+        return $joblist;
+    }
+
 
     public function jobsSearch_hunter(
     /* int */$categoryId,
@@ -833,7 +864,8 @@ class nlsCards {
         $categoryClass = new stdClass();
         $categoryClass->cat = null;
         $categoryClass->isSub = false;
-        $returnVal = $this->jobsSearch_hunter($categoryClass, null, null, null, null, null, null, $supplier_id);
+        //$returnVal = $this->jobsSearch_hunter($categoryClass, null, null, null, null, null, null, $supplier_id);
+        $returnVal = $this->totalJobsCount_hunter($categoryClass, null, null, null, null, null, null, $supplier_id);
         return $returnVal;
     }
 
@@ -1274,7 +1306,7 @@ class nlsCards {
 //            $result[$key]["date"] = date("d/m/Y", strtotime($date));
 //        }
 
-        if (isset($this->user_id) && !empty($this->user_id)) {
+        if (is_array($result) && count($result) > 0 && isset($this->user_id) && !empty($this->user_id)) {
             $filedJobs = $this->getFilledJobsList($this->user_id, 0, 1000);
 
             foreach ($result as $key => $searchJob) {

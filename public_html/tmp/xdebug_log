@@ -110,3 +110,8 @@
 [8] [Step Debug] ERR: Time-out connecting to debugging client, waited: 200 ms. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(
 [8] Log closed at 2021-10-12 11:05:01.436757
 
+[7] Log opened at 2021-10-13 08:20:25.553694
+[7] [Step Debug] INFO: Connecting to configured address/port: host.docker.internal:9003.
+[7] [Step Debug] ERR: Time-out connecting to debugging client, waited: 200 ms. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(
+[7] Log closed at 2021-10-13 08:20:25.764433
+

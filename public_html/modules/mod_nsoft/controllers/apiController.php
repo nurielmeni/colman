@@ -1,5 +1,7 @@
 <?php
 
+use FOF30\Factory\SwitchFactory;
+
 defined('_JEXEC') or die;
 class apiController extends nlsCards {
 
@@ -48,33 +50,49 @@ class apiController extends nlsCards {
         exit;
     }
 
-    public function myAction() {
+    public function myAction($params) {
+        $component = $params['component'];
+        if ($component) return $this->getComponentData($component);
 
-        $cvCount = $this->resumeGetCount($this->user_id);
-        $applayedJobs = $this->applayedJobGetCount($this->user_id);
-        $fileCount = $this->fileGetCount($this->user_id);
+        // $cvCount = $this->resumeGetCount($this->user_id);
+        // $applayedJobs = $this->applayedJobGetCount($this->user_id);
+        // $fileCount = $this->fileGetCount($this->user_id);
+        // $newJobsCount = $this->newJobsGetCount($this->user_id);
+        // $totalJobsCount = $this->totalJobsCount($this->user_id);
 
-        //var_dump($this->fileGetCount('451D2E28-BB7F-4076-A56E-0E6E2445E458'));die;
-        // $hotjobs_count = 0;//$this->getNewJobCount(); // count($this->getHotJobsList(0, 1000)["jobs"]);
-        //  $hotjobs_count = count($this->getHotJobsList(0,1000, "next")["jobs"]);
+        // $result = [
+        //     'resumeCount' => $cvCount,
+        //     'applayedJobsCount' => $applayedJobs,
+        //     'fileCount' => $fileCount,
+        //     'newJobsCount' => $newJobsCount,
+        //     'totalJobsCount' => $totalJobsCount->TotalHits
+        // ];
 
-        $newJobsCount = $this->newJobsGetCount($this->user_id);
-        $totalJobsCount = $this->totalJobsCount($this->user_id);
+        // echo json_encode($result);
+        die;
+    }
 
-
-
-
-
-
-
-        $result = [
-            'resumeCount' => $cvCount,
-            'applayedJobsCount' => $applayedJobs,
-            'fileCount' => $fileCount,
-            'newJobsCount' => $newJobsCount,
-            'totalJobsCount' => $totalJobsCount->TotalHits
-        ];
-
+    public function getComponentData($component) {
+        switch ($component) {
+            case 'resumeCount':
+                $result = $this->resumeGetCount($this->user_id);
+                break;
+            case 'applayedJobsCount':
+                $result = $this->applayedJobGetCount($this->user_id);
+                break;
+            case 'fileCount':
+                $result = $this->fileGetCount($this->user_id);
+                break;
+            case 'newJobsCount':
+                $result = $this->newJobsGetCount($this->user_id);
+                break;
+            case 'totalJobsCount':
+                $result = $this->totalJobsCount($this->user_id);
+                break;
+            default:
+                # code...
+                break;
+        }
         echo json_encode($result);
         die;
     }
