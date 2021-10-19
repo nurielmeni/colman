@@ -25,8 +25,9 @@ $session->set('user_credentials', $attributes);
 
 $user_credentials = $session->get("applicant_user_id");
 
-
-
+print_r($user_credentials);
+print_r($session);
+die();
 
 if (empty($user_credentials)) {
     if ($_POST["type"] === 'get_api') {
