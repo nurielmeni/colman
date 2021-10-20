@@ -23,9 +23,9 @@ $app_user_id = '6a92814f-0723-48af-9d6a-8f8b865384ea';
 $session = &JFactory::getSession();
 $session->set("applicant_user_id", $app_user_id);
 $session->set('user_credentials', $attributes);
-
-$user_credentials = $session->get("applicant_user_id");
 */
+$user_credentials = $session->get("applicant_user_id");
+
 if (empty($user_credentials)) {
     if ($_POST["type"] === 'get_api') {
 
