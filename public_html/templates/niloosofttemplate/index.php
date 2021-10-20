@@ -5,6 +5,7 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Pragma: public');
 
+/*
 $attributes = [
     'phone' => ['054-7641456'],
     'fullName' => ['כלכלה כלכלה'],
@@ -24,7 +25,7 @@ $session->set("applicant_user_id", $app_user_id);
 $session->set('user_credentials', $attributes);
 
 $user_credentials = $session->get("applicant_user_id");
-
+*/
 if (empty($user_credentials)) {
     if ($_POST["type"] === 'get_api') {
 
