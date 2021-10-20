@@ -5,6 +5,7 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Pragma: public');
 
+$session = &JFactory::getSession();
 /*
 $attributes = [
     'phone' => ['054-7641456'],
@@ -20,7 +21,6 @@ $app_user_id = '6a92814f-0723-48af-9d6a-8f8b865384ea';
 // ];
 // $app_user_id = '8c53d926-28fd-4b73-b513-7c71737d1711';
 
-$session = &JFactory::getSession();
 $session->set("applicant_user_id", $app_user_id);
 $session->set('user_credentials', $attributes);
 */
