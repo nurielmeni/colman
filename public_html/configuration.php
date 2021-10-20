@@ -12,7 +12,8 @@ class JConfig {
 	public $debug = '0';
 	public $debug_lang = '0';
 	public $dbtype = 'mysqli';
-	public $host = 'joomladb';
+	//public $host = 'joomladb';
+	public $host = 'localhost';
 	public $user = 'colman_user';
 	public $password = 'DSASDh347jh';
 	public $db = 'colman_db';
@@ -54,8 +55,10 @@ class JConfig {
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = '/var/www/html/public_html/logs';
-	public $tmp_path = '/var/www/html/public_html/tmp';
+	//public $log_path = '/var/www/html/public_html/logs';
+	//public $tmp_path = '/var/www/html/public_html/tmp';
+	public $log_path = '/home/colman/public_html/public_html/logs';
+	public $tmp_path = '/home/colman/public_html/public_html/tmp';
 	public $lifetime = '15';
 	public $session_handler = 'database';
 	public $memcache_persist = '1';
