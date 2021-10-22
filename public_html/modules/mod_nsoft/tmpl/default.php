@@ -7,6 +7,7 @@ defined('_JEXEC') or die;
 
 <input type="hidden" id="baseURL" value="<?php echo JUri::base(); ?>">
 <section class="board-modul" id="mod_nsoft_section" dir="rtl">
+    <progress id="progress-loading" class="pure-material-progress-linear" style="display:none"></progress>
     <div class="board-modul-title-container">
         <h1 class="board-modul-title"><?= JText::_('COLMAN_BOARD_TITLE') ?></h1>
         <div class="board-modul-horizontal-line"></div>

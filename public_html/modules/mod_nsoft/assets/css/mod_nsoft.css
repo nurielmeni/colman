@@ -1,137 +1,222 @@
-
 .board-modul {
-    background: rgba(0, 0, 0, 0) url("../images/pattern.jpg") repeat scroll 0 0;
-    display: inline-block;
-    height: 550px;
-    width: 100%;
+  background: rgba(0, 0, 0, 0) url("../images/pattern.jpg") repeat scroll 0 0;
+  display: inline-block;
+  height: 550px;
+  width: 100%;
+  position: relative;
 }
 
 .board-modul-title-container {
-    margin: 15px auto 0;
-    width: 1170px;
-    box-sizing: border-box;
-    padding: 0 15px;
+  margin: 15px auto 0;
+  width: 1170px;
+  box-sizing: border-box;
+  padding: 0 15px;
 }
 
-.board-modul-title-container .board-modul-total-jobs, .board-modul-title-container .board-modul-total-jobs span{
-    text-align: center;
-    color: #001f5b;
-    font-size: 44px;
-    box-sizing: border-box;
-    padding: 10px;
-    margin-bottom: 34px;
-    border-radius: 10px;
+.board-modul-title-container .board-modul-total-jobs,
+.board-modul-title-container .board-modul-total-jobs span {
+  text-align: center;
+  color: #001f5b;
+  font-size: 44px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 34px;
+  border-radius: 10px;
 }
-
 
 .board-modul-title {
-    color: #001f5b;
-    font-family: "almoni_dl_aaablack";
-    font-size: 60px;
-    text-align: center;
+  color: #001f5b;
+  font-family: "almoni_dl_aaablack";
+  font-size: 60px;
+  text-align: center;
 }
 
 .board-modul-horizontal-line {
-    background-color: #00a4c8;
-    height: 2px;
-    margin: 0 auto;
-    width: 77px;
+  background-color: #00a4c8;
+  height: 2px;
+  margin: 0 auto;
+  width: 77px;
 }
 
 .board-modul-content {
-    height: 320px;
-    margin: 50px auto 0;
-    width: 1170px;
+  height: 320px;
+  margin: 50px auto 0;
+  width: 1170px;
 }
 
 .board-modul-content-container {
-    display: inline-block;
-    margin-left: -4px;
-    vertical-align: top;
+  display: inline-block;
+  margin-left: -4px;
+  vertical-align: top;
 }
 
 .board-modul-content-container:first-child {
-    margin-left: -5px;
+  margin-left: -5px;
 }
 
 .board-modul-box {
-    background-color: #fff;
-    border-radius: 15px;
-    display: block;
-    height: 145px;
-    margin: 0 15px 30px;
-    overflow: hidden;
-    width: 360px;
-    box-shadow: 0 2px 2px lightgrey;
-    position: relative;
-    cursor: pointer;
-    text-decoration: none;
+  background-color: #fff;
+  border-radius: 15px;
+  display: block;
+  height: 145px;
+  margin: 0 15px 30px;
+  overflow: hidden;
+  width: 360px;
+  box-shadow: 0 2px 2px lightgrey;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .board-modul-large-box {
-    height: 317px;
+  height: 317px;
 }
 
 .board-modul-box.filled-jobs .board-modul-box-icon {
-    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -200px;
+  background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -200px;
 }
 
 .board-modul-box.new-jobs .board-modul-box-icon {
-    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -75px;
+  background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -75px;
 }
 
 .board-modul-box.cv .board-modul-box-icon {
-    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -2px;
+  background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -2px;
 }
 
 .board-modul-box.files .board-modul-box-icon {
-    background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -39px;
+  background: rgba(0, 0, 0, 0) url("../images/sprite.png") repeat scroll -102px -39px;
 }
 
 .board-modul-box.filled-jobs .board-modul-count {
-    color: #f27176;
+  color: #f27176;
 }
 
 .board-modul-box.new-jobs .board-modul-count {
-    color: #2eab54;
+  color: #2eab54;
 }
 
 .board-modul-box.cv .board-modul-count {
-    color: #00a4c8;
+  color: #00a4c8;
 }
 
 .board-modul-box.files .board-modul-count {
-    color: #00a4c8;
+  color: #00a4c8;
 }
 
 .board-modul-box-icon {
-    display: block;
-    height: 40px;
-    margin-right: 10px;
-    margin-top: 10px;
-    width: 40px;
+  display: block;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 40px;
 }
 
 .board-modul-box-info {
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 100%;
 }
 
 .board-modul-count {
-    font-family: "almoni_dl_aaalight";
-    font-size: 93px;
-    line-height: 70%;
-    font-weight: normal;
+  font-family: "almoni_dl_aaalight";
+  font-size: 93px;
+  line-height: 70%;
+  font-weight: normal;
 }
 
 .board-modul-box-name {
-    color: #001f5b;
-    font-family: "almoni_dl_aaablack";
-    font-size: 25px;
-    padding: 15px;
+  color: #001f5b;
+  font-family: "almoni_dl_aaablack";
+  font-size: 25px;
+  padding: 15px;
+}
+
+/** progress loader */
+progress.pure-material-progress-linear {
+  width: 100%;
+}
+
+progress#progress-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pure-material-progress-linear {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 0.25em;
+  color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  background-color: rgba(var(--pure-material-primary-rgb, 33, 150, 243), 0.12);
+  font-size: 16px;
+}
+
+.pure-material-progress-linear::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+/* Determinate */
+.pure-material-progress-linear::-webkit-progress-value {
+  background-color: currentColor;
+  transition: all 0.2s;
+}
+
+.pure-material-progress-linear::-moz-progress-bar {
+  background-color: currentColor;
+  transition: all 0.2s;
+}
+
+.pure-material-progress-linear::-ms-fill {
+  border: none;
+  background-color: currentColor;
+  transition: all 0.2s;
+}
+
+/* Indeterminate */
+.pure-material-progress-linear:indeterminate {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    to right,
+    transparent 50%,
+    currentColor 50%,
+    currentColor 60%,
+    transparent 60%,
+    transparent 71.5%,
+    currentColor 71.5%,
+    currentColor 84%,
+    transparent 84%
+  );
+  animation: pure-material-progress-linear 2s infinite linear;
+}
+
+.pure-material-progress-linear:indeterminate::-moz-progress-bar {
+  background-color: transparent;
+}
+
+.pure-material-progress-linear:indeterminate::-ms-fill {
+  animation-name: none;
+}
+
+@keyframes pure-material-progress-linear {
+  0% {
+    background-size: 200% 100%;
+    background-position: left -31.25% top 0%;
+  }
+
+  50% {
+    background-size: 800% 100%;
+    background-position: left -49% top 0%;
+  }
+
+  100% {
+    background-size: 400% 100%;
+    background-position: left -102% top 0%;
+  }
 }
