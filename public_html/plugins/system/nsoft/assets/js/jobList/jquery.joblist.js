@@ -32,7 +32,7 @@
                 url: source,
                 async: true,
                 beforeSend: function () {
-                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear""></progress>');
+                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear"></progress>');
                 },
                 success: function (data) {
                     longDetailsHtml = $.parseHTML(data);
