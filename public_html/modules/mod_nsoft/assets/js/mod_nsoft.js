@@ -21,57 +21,6 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
   var $ = jQuery;
 
   getBoardComponentsCounts();
-  // $.ajax({
-  //   method: "POST",
-  //   url: "",
-  //   dataType: "json",
-  //   data: { type: "get_api", action: "myAction", controller: "jobs", component: "new-jobs" },
-  // }).done(
-  //   function (res) {
-  //     if (
-  //       res != null &&
-  //       res.hasOwnProperty("result") &&
-  //       res.result === "auth required"
-  //     ) {
-  //       alert("Session Expired, please log in again.");
-  //       location.reload();
-  //     }
-  //     //console.log(res);
-  //     var obj = res;
-
-  //     $("#filled-jobs .board-modul-count").html(obj.applayedJobsCount);
-  //     if ($(".popup_head_numb #filled-jobs_popup").length > 0) {
-  //       $(".popup_head_numb #filled-jobs_popup").html(
-  //         $("#filled-jobs .board-modul-count").html()
-  //       );
-  //     }
-
-  //     $("#new-jobs .board-modul-count").html(obj.newJobsCount);
-  //     if ($(".popup_head_numb #new-jobs_popup").length > 0) {
-  //       $(".popup_head_numb #new-jobs_popup").html(
-  //         $("#new-jobs .board-modul-count").html()
-  //       );
-  //     }
-
-  //     $("#cv .board-modul-count").html(obj.resumeCount);
-  //     if ($(".popup_head_numb #cv_popup").length > 0) {
-  //       $(".popup_head_numb #cv_popup").html(
-  //         $("#cv .board-modul-count").html()
-  //       );
-  //     }
-  //     $("#files .board-modul-count").html(obj.fileCount);
-  //     if ($(".popup_head_numb #files_popup").length > 0) {
-  //       $(".popup_head_numb #files_popup").html(
-  //         $("#files .board-modul-count").html()
-  //       );
-  //     }
-  //     $(".board-modul-title-container .board-modul-total-jobs span").html(
-  //       obj.totalJobsCount
-  //     );
-  //   }
-  // ).fail(function (e) {
-  //   console.log("JOBS: myAction: fail:", e);
-  // });
 
   function getBoardComponentsCounts() {
     getComponent('resumeCount', 'cv');
