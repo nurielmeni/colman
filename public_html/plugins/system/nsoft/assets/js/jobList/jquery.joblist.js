@@ -28,37 +28,41 @@
             }
 
             var source = (state == 1 ? "plugins/system/nsoft/assets/js/jobList/html/single-job-details.html" : "plugins/system/nsoft/assets/js/jobList/html/single-job-short.html");
-            jQuery.ajax({url: source,
+            jQuery.ajax({
+                url: source,
                 async: true,
+                beforeSend: function () {
+                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear""></progress>');
+                },
                 success: function (data) {
                     longDetailsHtml = $.parseHTML(data);
                     currentBlock = $('#' + id_pref + 'block' + item.id);
                     currentBlock.html(longDetailsHtml);
                     cvEmailExist = false;
 
-                    if (item.jobStatus == 3){
+                    if (item.jobStatus == 3) {
                         currentBlock.find('.joblist-apply').parent().append("<p class='joj-is-closed'>משרה סגורה</p>");
                         currentBlock.find('.joblist-apply').remove();
                     } else if (item.status == 1) {
                         currentBlock.find('.joblist-apply').parent().prepend("<p class='already-applied-job'>הוגשו קורות חיים למשרה זו</p>");
                         currentBlock.find('.joblist-apply').remove();
 
-                        } else {
-                            currentBlock.find('.joblist-apply').attr("id", id_pref + "apply" + item.id).click(function () {
-                                // settings.applyForJob(item.id)
-                                if (item.customerSiteLink.length < 1 || cvEmailExist) showApplyBlock(settings.id_pref, item, 1);
-                                else showHideDetails(settings.id_pref, 1, item);
-                            });
-                            currentBlock.find('.joblist-apply').text(settings.applyButton);
-                            
-//                            ADDS THE LINK TO THE CUSTOMER SITE TO APPLY
-                            if (item.customerSiteLink.length > 0){
-//                                currentBlock.find('.joblist-apply').remove();
-                                if(!item.customerSiteLink.startsWith("http://") && !item.customerSiteLink.startsWith("https://"))
-                                    item.customerSiteLink = "http://" + item.customerSiteLink;
-                                $('<button class="popup_btn joblist-apply customer-site" onclick="window.open(\''+item.customerSiteLink+'\',\'_blank\'\)">הגש קו"ח באתר המעסיק</button>').insertBefore(currentBlock.find('.popup_btn.joblist-close'));
-                            }
+                    } else {
+                        currentBlock.find('.joblist-apply').attr("id", id_pref + "apply" + item.id).click(function () {
+                            // settings.applyForJob(item.id)
+                            if (item.customerSiteLink.length < 1 || cvEmailExist) showApplyBlock(settings.id_pref, item, 1);
+                            else showHideDetails(settings.id_pref, 1, item);
+                        });
+                        currentBlock.find('.joblist-apply').text(settings.applyButton);
+
+                        //                            ADDS THE LINK TO THE CUSTOMER SITE TO APPLY
+                        if (item.customerSiteLink.length > 0) {
+                            //                                currentBlock.find('.joblist-apply').remove();
+                            if (!item.customerSiteLink.startsWith("http://") && !item.customerSiteLink.startsWith("https://"))
+                                item.customerSiteLink = "http://" + item.customerSiteLink;
+                            $('<button class="popup_btn joblist-apply customer-site" onclick="window.open(\'' + item.customerSiteLink + '\',\'_blank\'\)">הגש קו"ח באתר המעסיק</button>').insertBefore(currentBlock.find('.popup_btn.joblist-close'));
                         }
+                    }
                     //console.log("---" + item);
                     currentBlock.find('.joblist-jobName').text(item.name);
                     currentBlock.find('.joblist-jobId').text(item.jobCode);
@@ -72,31 +76,32 @@
                             url: "",
                             dataType: 'json',
                             //async: false,
-                            data: {type: "get_api", action: "getJobDescription", controller: settings.controller, jobId: item.jobid}
+                            data: { type: "get_api", action: "getJobDescription", controller: settings.controller, jobId: item.jobid }
                         })
-                            .done(function (res) {
+                        .done(function (res) {
+                            if (res.result === "auth required") {
+                                alert("Session Expired, please log in again.");
+                                location.reload();
+                            }
+                            var obj = res; //JSON.parse( res );
 
-                                if (res.result === "auth required")
-                                {
-                                    alert("Session Expired, please log in again.");
-                                    location.reload();
-                                }
-                                var obj = res; //JSON.parse( res );
+                            currentBlock.find('.joblist-description').html(obj.Description);
+                            currentBlock.find('.joblist-requirement').html(obj.Requirements);
+                            currentBlock.find('.joblist-skills').html(obj.Skills);
+                            var item = obj.rankList.find(function (elm) { return elm['id'] == obj.Rank; });
+                            currentBlock.find('.joblist-rank').html(typeof (item) === 'undefined' ? '' : item.name);
+                            cvEmailExist = obj.CvEmail == null || obj.CvEmail.length < 1 ? false : true;
+                            if (!cvEmailExist && currentBlock.find('button.popup_btn.joblist-apply.customer-site').length > 0) {
+                                currentBlock.find('button.popup_btn.joblist-apply.local').remove();
+                            }
+                            currentBlock.find('div.popup_details_buttons').show();
 
-                                currentBlock.find('.joblist-description').html(obj.Description);
-                                currentBlock.find('.joblist-requirement').html(obj.Requirements);
-                                currentBlock.find('.joblist-skills').html(obj.Skills);
-                                var item = obj.rankList.find(function(elm){return elm['id'] == obj.Rank;});
-                                currentBlock.find('.joblist-rank').html(typeof(item) === 'undefined' ? '' : item.name);
-                                cvEmailExist = obj.CvEmail == null || obj.CvEmail.length < 1 ? false : true;
-                                if(!cvEmailExist && currentBlock.find('button.popup_btn.joblist-apply.customer-site').length > 0){
-                                    currentBlock.find('button.popup_btn.joblist-apply.local').remove();
-                                }
-                                currentBlock.find('div.popup_details_buttons').show();
-
-                                // Updates the query string so it can be sent to another user
-                                updateParameterUrl('getJobById', obj.JobId);
-                            });
+                            // Updates the query string so it can be sent to another user
+                            updateParameterUrl('getJobById', obj.JobId);
+                        })
+                        .always(function () {
+                            $('#' + id_pref + 'block' + item.id).parent().find('progress').remove();
+                        });
 
                         currentBlock.find('.joblist-close').text(settings.closeButton);
                         currentBlock.find('.joblist-close').attr("id", id_pref + "close" + item.id).click(function () {
@@ -121,48 +126,47 @@
                 url: "",
                 dataType: 'json',
                 //async: false,
-                data: {type: "get_api", action: "getApplyOptionsAction", controller: settings.controller}
+                data: { type: "get_api", action: "getApplyOptionsAction", controller: settings.controller }
             })
-                    .done(function (res) {
+                .done(function (res) {
 
-                        if (res.result === "auth required")
-                        {
-                            alert("Session Expired, please log in again.");
-                            location.reload();
-                        }
+                    if (res.result === "auth required") {
+                        alert("Session Expired, please log in again.");
+                        location.reload();
+                    }
 
-                        var obj = res; //JSON.parse( res );
+                    var obj = res; //JSON.parse( res );
 
-                        if (res.fileList.length == undefined) {
-                            contentDiv.find("#apply-job-upload-file1-" + id_pref).append(new Option(res.fileList.Name, res.fileList.FileId));
-                        } else {
-                            $.each(res.fileList, function (i, item) {
+                    if (res.fileList.length == undefined) {
+                        contentDiv.find("#apply-job-upload-file1-" + id_pref).append(new Option(res.fileList.Name, res.fileList.FileId));
+                    } else {
+                        $.each(res.fileList, function (i, item) {
 
-                                contentDiv.find("#apply-job-upload-file1-" + id_pref).append(new Option(item.Name, item.FileId));
-                            });
-                        }
-
-                        if (res.cvList.length == undefined) {
-                            contentDiv.find("#apply-job-upload-file2-" + id_pref).append(new Option((res.cvList.date + " " + res.cvList.name), res.cvList.id));
-                        } else {
-                            $.each(res.cvList, function (i, item) {
-
-                                contentDiv.find("#apply-job-upload-file2-" + id_pref).append(new Option((item.date + " " + item.name), item.id));
-                            });
-                        }
-
-
-                        contentDiv.find('select.apply-job-upload-select').each(function () {
-                            var placeholder = "אין מסמכים נוספים במערכת";
-                            if ($(this).attr('name') === 'selectedFile[]' && res.fileList.length > 0) {
-                                placeholder = "קבצים מצורפים";
-                            }
-                            if ($(this).attr('name') === 'selectedCv[]' && res.cvList.length > 0) {
-                                placeholder = "קורות חיים";
-                            }
-                            window.testSelAll2 = $(this).SumoSelect({selectAll: false, placeholder: placeholder});
+                            contentDiv.find("#apply-job-upload-file1-" + id_pref).append(new Option(item.Name, item.FileId));
                         });
+                    }
+
+                    if (res.cvList.length == undefined) {
+                        contentDiv.find("#apply-job-upload-file2-" + id_pref).append(new Option((res.cvList.date + " " + res.cvList.name), res.cvList.id));
+                    } else {
+                        $.each(res.cvList, function (i, item) {
+
+                            contentDiv.find("#apply-job-upload-file2-" + id_pref).append(new Option((item.date + " " + item.name), item.id));
+                        });
+                    }
+
+
+                    contentDiv.find('select.apply-job-upload-select').each(function () {
+                        var placeholder = "אין מסמכים נוספים במערכת";
+                        if ($(this).attr('name') === 'selectedFile[]' && res.fileList.length > 0) {
+                            placeholder = "קבצים מצורפים";
+                        }
+                        if ($(this).attr('name') === 'selectedCv[]' && res.cvList.length > 0) {
+                            placeholder = "קורות חיים";
+                        }
+                        window.testSelAll2 = $(this).SumoSelect({ selectAll: false, placeholder: placeholder });
                     });
+                });
         };
 
         getApplyBlockData = function (curBlock, item, id_pref) {
@@ -184,7 +188,8 @@
                 multiselect: false, // or true
                 extensions: ['.pdf', '.doc', '.docx', '.rtf']
             };
-            jQuery.ajax({url: source,
+            jQuery.ajax({
+                url: source,
                 async: true,
                 success: function (data) {
                     longDetailsHtml = $.parseHTML(data);
@@ -221,14 +226,14 @@
 
                     curBlock.find("#apply-job-upload-skydrive").attr('id', 'apply-job-upload-skydrive-' + jobId);
                     curBlock.find("#apply-job-upload-skydrive-" + jobId).click(function () {
-                        WL.init({client_id: onedriveClientId, redirect_uri: onedriveRedirectUri});
-                        WL.login({"scope": "wl.skydrive wl.signin"}).then(
-                                function (response) {
-                                    openFromSkyDrivePopup(curBlock, jobId);
-                                },
-                                function (response) {
-                                    log("Failed to authenticate.");
-                                }
+                        WL.init({ client_id: onedriveClientId, redirect_uri: onedriveRedirectUri });
+                        WL.login({ "scope": "wl.skydrive wl.signin" }).then(
+                            function (response) {
+                                openFromSkyDrivePopup(curBlock, jobId);
+                            },
+                            function (response) {
+                                log("Failed to authenticate.");
+                            }
                         );
 
                     });
@@ -247,13 +252,13 @@
 
 
                         if ($("#apply-job-upload-file2-" + jobId).val() != null && $("#apply-job-upload-file2-" + jobId).val() !== "" ||
-                                (curBlock.find("#apply-job-upload-file-type").val() == 'cv' && 
-                                    (
-                                     $("#apply-job-localFile-" + jobId).val() != null && $("#apply-job-localFile-" + jobId).val() !== "" ||
-                                     $("#apply-job-dropbox-fileUrl-" + jobId).val() != null && $("#apply-job-dropbox-fileUrl-" + jobId).val() !== "" ||
-                                     $("#apply-job-skydrive-fileUrl-" + jobId).val() != null && $("#apply-job-skydrive-fileUrl-" + jobId).val() !== ""
-                                    )
-                                )){
+                            (curBlock.find("#apply-job-upload-file-type").val() == 'cv' &&
+                                (
+                                    $("#apply-job-localFile-" + jobId).val() != null && $("#apply-job-localFile-" + jobId).val() !== "" ||
+                                    $("#apply-job-dropbox-fileUrl-" + jobId).val() != null && $("#apply-job-dropbox-fileUrl-" + jobId).val() !== "" ||
+                                    $("#apply-job-skydrive-fileUrl-" + jobId).val() != null && $("#apply-job-skydrive-fileUrl-" + jobId).val() !== ""
+                                )
+                            )) {
 
                             var formData = new FormData(curBlock.find("#apply-job-upload-form-" + jobId)[0]);
 
@@ -280,22 +285,22 @@
                                         //   showHideDetails(id_pref, 0, item);
                                         location.hash = "";
                                         location.hash = curBlock.attr('id');
-                                        
+
                                         // Update files counter if files added
-                                        if(typeof(resArray.fileList)!=="undefined"&&typeof(resArray.fileList.type)!=="undefined")
-                                        switch (resArray.fileList.type){
-                                            case "cv":
-                                                console.log("cv: "+resArray.fileList.count);
-                                                $('.board-modul-box.cv .board-modul-count').text(resArray.fileList.count);
-                                                break;
-                                            case "file":
-                                                console.log("file: "+resArray.fileList.count);
-                                                $('.board-modul-box.files .board-modul-count').text(resArray.fileList.count);
-                                                break;
-                                            default:
-                                                console.log("No files were uploded");
-                                                break;
-                                        }
+                                        if (typeof (resArray.fileList) !== "undefined" && typeof (resArray.fileList.type) !== "undefined")
+                                            switch (resArray.fileList.type) {
+                                                case "cv":
+                                                    console.log("cv: " + resArray.fileList.count);
+                                                    $('.board-modul-box.cv .board-modul-count').text(resArray.fileList.count);
+                                                    break;
+                                                case "file":
+                                                    console.log("file: " + resArray.fileList.count);
+                                                    $('.board-modul-box.files .board-modul-count').text(resArray.fileList.count);
+                                                    break;
+                                                default:
+                                                    console.log("No files were uploded");
+                                                    break;
+                                            }
                                     }
                                 },
                                 cache: false,
@@ -311,9 +316,9 @@
             });
 
             // Change the file types allowed for selection
-            jQuery(document).on("change", "#apply-job-upload-file-type", function(e){
+            jQuery(document).on("change", "#apply-job-upload-file-type", function (e) {
                 //console.log("Meni: Upload File Type: " + $(this).val());
-                switch(jQuery(this).val()){
+                switch (jQuery(this).val()) {
                     case "cv":
                         options.extensions = ['.pdf', '.doc', '.docx', '.rtf'];
                         jQuery("#apply-job-localFile-" + jobId).attr("accept", "application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,application/rtf");
@@ -332,7 +337,8 @@
             $('#' + id_pref + 'block' + item.id).removeClass('joblist-short-details').addClass('joblist-long-details');
 
             var source = "plugins/system/nsoft/assets/js/jobList/html/single-job-details.html";
-            jQuery.ajax({url: source,
+            jQuery.ajax({
+                url: source,
                 async: true,
                 success: function (data) {
                     longDetailsHtml = $.parseHTML(data);
@@ -352,27 +358,26 @@
                         url: "",
                         dataType: 'json',
                         //async: false,
-                        data: {type: "get_api", action: "getJobDescription", controller: settings.controller, jobId: item.jobid}
+                        data: { type: "get_api", action: "getJobDescription", controller: settings.controller, jobId: item.jobid }
                     })
-                            .done(function (res) {
+                        .done(function (res) {
 
-                                if (res.result === "auth required")
-                                {
-                                    alert("Session Expired, please log in again.");
-                                    location.reload();
-                                }
+                            if (res.result === "auth required") {
+                                alert("Session Expired, please log in again.");
+                                location.reload();
+                            }
 
-                                var obj = res; //JSON.parse( res );
+                            var obj = res; //JSON.parse( res );
 
-                                currentBlock.find('.joblist-description').html(obj.Description);
-                                currentBlock.find('.joblist-requirement').html(obj.Requirements);
-                                currentBlock.find('.joblist-skills').html(obj.Skills);
-                                var item = obj.rankList.find(function(elm){return elm['id'] == obj.Rank;});
-                                currentBlock.find('.joblist-rank').html(typeof(item) === 'undefined' ? '' : item.name);
-                                
-                                // Updates the query string so it can be sent to another user
-                                updateParameterUrl('getJobById', obj.JobId);
-                            });
+                            currentBlock.find('.joblist-description').html(obj.Description);
+                            currentBlock.find('.joblist-requirement').html(obj.Requirements);
+                            currentBlock.find('.joblist-skills').html(obj.Skills);
+                            var item = obj.rankList.find(function (elm) { return elm['id'] == obj.Rank; });
+                            currentBlock.find('.joblist-rank').html(typeof (item) === 'undefined' ? '' : item.name);
+
+                            // Updates the query string so it can be sent to another user
+                            updateParameterUrl('getJobById', obj.JobId);
+                        });
 
                     currentBlock.find('.joblist-close').text(settings.closeButton);
                     currentBlock.find('.joblist-close').attr("id", id_pref + "close" + item.id).click(function () {
@@ -392,7 +397,8 @@
                 listContainer.append($(container));
 
                 var source = "plugins/system/nsoft/assets/js/jobList/html/single-job-short.html";
-                jQuery.ajax({url: source,
+                jQuery.ajax({
+                    url: source,
                     async: false,
                     success: function (data) {
                         longDetailsHtml = $.parseHTML(data);
@@ -407,13 +413,13 @@
                         currentBlock.find('#' + settings.id_pref + "details" + item.id).click(function () {
                             showHideDetails(settings.id_pref, 1, item);
                         });
-                        
-                        if (item.jobStatus == 3){
+
+                        if (item.jobStatus == 3) {
                             currentBlock.find('.joblist-apply').parent().append("<p class='joj-is-closed'>משרה סגורה</p>");
                             currentBlock.find('.joblist-apply').remove();
                         } else if (item.status == 1) {
-                                currentBlock.find('.joblist-apply').parent().prepend("<p class='already-applied-job'>הוגשו קורות חיים למשרה זו</p>");
-                                currentBlock.find('.joblist-apply').remove();
+                            currentBlock.find('.joblist-apply').parent().prepend("<p class='already-applied-job'>הוגשו קורות חיים למשרה זו</p>");
+                            currentBlock.find('.joblist-apply').remove();
                         } else {
                             currentBlock.find('.joblist-apply').attr("id", settings.id_pref + "apply" + item.id).click(function () {
                                 //settings.applyForJob(item.id)
@@ -440,22 +446,22 @@
             mode: 'open',
             select: 'single'
         }).then(
-                function (response) {
+            function (response) {
 
-                    var files = response.data.files;
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
+                var files = response.data.files;
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
 
-                        $("#apply-job-skydrive-fileName-" + jobId).val(file.name);
-                        $("#apply-job-skydrive-fileUrl-" + jobId).val(file.source);
-//                        $("#apply-job-selected-fileName-" + jobId).text(file.name);
-                        //  console.log(file);
-                        $("#apply-job-upload-skydrive-" + jobId).addClass("selected");
-                    }
-                },
-                function (errorResponse) {
-                    log("WL.fileDialog errorResponse = " + JSON.stringify(errorResponse));
+                    $("#apply-job-skydrive-fileName-" + jobId).val(file.name);
+                    $("#apply-job-skydrive-fileUrl-" + jobId).val(file.source);
+                    //                        $("#apply-job-selected-fileName-" + jobId).text(file.name);
+                    //  console.log(file);
+                    $("#apply-job-upload-skydrive-" + jobId).addClass("selected");
                 }
+            },
+            function (errorResponse) {
+                log("WL.fileDialog errorResponse = " + JSON.stringify(errorResponse));
+            }
         );
     }
 
@@ -468,7 +474,7 @@
 
     function onUploadFileError(response) {
         document.getElementById("info").innerText =
-                "Error getting folder info: " + response.error.message;
+            "Error getting folder info: " + response.error.message;
     }
 
 }(jQuery));

@@ -46,6 +46,7 @@
                 jQuery.ajax({
                     method: "POST",
                     url: "",
+                    beforeSend: LoadingIndicator.show,
                     data: {type: "get_api", action: "applyForJobAction", controller: "search", itemId: itemId}
                 })
                         .done(function (res) {
@@ -92,6 +93,7 @@
             url: "",
             dataType: 'json',
             thisId: thisId, //to decide if modal(searchModId) of form
+            beforeSend: LoadingIndicator.show,
             //async: false,
             data: {type: "get_api", action: "getSearchResultAction", controller: "search", lastId: pageNumJob, countPerPage: countPerPage + 1, searchData: params}
         })

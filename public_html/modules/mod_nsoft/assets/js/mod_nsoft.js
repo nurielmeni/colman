@@ -1,3 +1,22 @@
+var LoadingIndicator = LoadingIndicator || (function ($, id) {
+  function show() {
+    $('#' + id).show();
+  }
+
+  function hide() {
+    $('#' + id).hide();
+  }
+
+  $(document).ajaxStart(show);
+  $(document).ajaxSend(show);
+  $(document).ajaxStop(hide);
+
+  return {
+    show: show,
+    hide, hide
+  }
+})(jQuery, 'progress-loading');
+
 (function () {
   var $ = jQuery;
 
@@ -68,26 +87,27 @@
       url: "",
       dataType: "json",
       data: { type: "get_api", action: "myAction", controller: "jobs", component: component },
+      beforeSend: LoadingIndicator.show
     })
-    .done(function(res) {
-      if (
-        res != null &&
-        res.hasOwnProperty("result") &&
-        res.result === "auth required"
-      ) {
-        alert("Session Expired, please log in again.");
-        location.reload();
-      }
+      .done(function (res) {
+        if (
+          res != null &&
+          res.hasOwnProperty("result") &&
+          res.result === "auth required"
+        ) {
+          alert("Session Expired, please log in again.");
+          location.reload();
+        }
 
-      if (id === 'total') {
-        $(".board-modul-title-container .board-modul-total-jobs span").html(res.TotalHits);
-      } else {
-        updateBoardCounter(id, res);
-      }
-    })
-    .fail(function (e) {
-      console.log("Board: component: ",component, e);
-    });
+        if (id === 'total') {
+          $(".board-modul-title-container .board-modul-total-jobs span").html(res.TotalHits);
+        } else {
+          updateBoardCounter(id, res);
+        }
+      })
+      .fail(function (e) {
+        console.log("Board: component: ", component, e);
+      });
   }
 
   function updateBoardCounter(id, res) {
@@ -96,7 +116,7 @@
       $(".popup_head_numb #" + id + "_popup").html(
         $("#" + id + " .board-modul-count").html()
       );
-    }        
+    }
   }
 
   function getJobListCont(thisId, obj, countPerPage) {
@@ -120,6 +140,7 @@
               controller: "jobs",
               itemId: itemId,
             },
+            beforeSend: LoadingIndicator.show
           })
           .done(function (res) {
             if (
@@ -147,7 +168,7 @@
       objList: obj,
       id_pref: thisId,
       countPerPage: countPerPage,
-      downloadFunction: function (itemId) {},
+      downloadFunction: function (itemId) { },
       //            uploadFunction: function (formId) {
       //                var formData = new FormData(formId[0]);
       //
@@ -182,6 +203,7 @@
               itemId: itemId,
               cont_type: thisId,
             },
+            beforeSend: LoadingIndicator.show
           })
           .done(function (res) {
             if (
@@ -226,6 +248,7 @@
         );
         getContent(thisId, 0, 10, true);
       },
+      beforeSend: LoadingIndicator.show,
       cache: false,
       contentType: false,
       processData: false,
@@ -247,6 +270,7 @@
           lastId: pageNumJob,
           countPerPage: countPerPage + 1,
         },
+        beforeSend: LoadingIndicator.show
       })
       .fail(function (res) {
         alert(res);
