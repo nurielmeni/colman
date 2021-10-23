@@ -12,7 +12,12 @@
       "pathMappings": {
         "/var/www/html": "${workspaceRoot}/public_html/"
       },
-      "stopOnEntry": false
+      "stopOnEntry": false,
+      "xdebugSettings": {
+          "max_children": 128,
+          "max_data": 512,
+          "max_depth": 3
+      }
     }
   ]
 }

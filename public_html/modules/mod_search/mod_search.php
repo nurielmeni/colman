@@ -71,7 +71,14 @@ if ($app->input->post->get('type', FALSE) === 'get_api') {
     $params['countPerPage'] = $app->input->post->get('countPerPage', null);
     $params['apply-job-comment'] = $_POST['apply-job-comment'];
 
-    $obj->{$app->input->post->get('action', FALSE)}($params);
+    $action = $app->input->post->get('action', FALSE);
+    if ($action === "applyForJobAction"){
+        // Clear the search cache
+        $cache = JFactory::getCache('mod_nsoft');
+        $cache->clean();
+    }
+
+    $obj->{$action}($params);
 } else {
 
     $data = modSearchHelper::getAction($app->input->post->get('type', FALSE), $app->input->post->get('type', FALSE));

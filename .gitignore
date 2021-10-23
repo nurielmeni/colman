@@ -2,4 +2,5 @@ public_html/templates/
 public_html/tmp/
 public_html/logs/
 public_html/configuration.php
+public_html/cache/
 .DS_Store

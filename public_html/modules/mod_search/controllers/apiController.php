@@ -18,6 +18,9 @@ class apiController extends nlsCards {
             // We still need to put it inside an array.
             array('colman')
         );
+
+        $this->cache = JFactory::getCache('mod_search');
+        $this->cache->setCaching(1);
     }
 
     public function getSearchResultAction($params) {
@@ -38,11 +41,12 @@ class apiController extends nlsCards {
         $categoryClass->isSub = false;
 
         $start = microtime(true);
-        JLog::add('Search: start: ' . $start, JLog::INFO, 'colman');
-        $listData = $this->jobsSearch_hunter($categoryClass, $keyWord, $rankId, $scopId, $customerId, $lastId * ($countPerPage - 1), $countPerPage, $search_supplier_id, "", $jobLocation);
+
+        $listData = $this->cache->call([$this, 'jobsSearch_hunter'],$categoryClass, $keyWord, $rankId, $scopId, $customerId, $lastId * ($countPerPage - 1), $countPerPage, $search_supplier_id, "", $jobLocation);
+        //$listData = $this->jobsSearch_hunter($categoryClass, $keyWord, $rankId, $scopId, $customerId, $lastId * ($countPerPage - 1), $countPerPage, $search_supplier_id, "", $jobLocation);
         $end = microtime(true);
-        JLog::add('Search: end: ' . $end, JLog::INFO, 'colman');
         JLog::add('Search: time: ' . ($end - $start), JLog::INFO, 'colman');
+        JLog::add('---------------', JLog::INFO, 'colman');
 
         $result = ["jobs" => $listData->result,"TotalHits"=>$listData->TotalHits];
         echo json_encode($result);

@@ -4,6 +4,7 @@ use FOF30\Factory\SwitchFactory;
 
 defined('_JEXEC') or die;
 class apiController extends nlsCards {
+    private $cache;
 
     public function __construct($username_token, $password_token) {
         parent::__construct($username_token, $password_token);
@@ -19,6 +20,10 @@ class apiController extends nlsCards {
             // We still need to put it inside an array.
             array('colman')
         );
+
+        $this->cache = JFactory::getCache('mod_nsoft');
+        $this->cache->setCaching(1);
+    
     }
 
     public function downloadFileAction($param) {
@@ -54,27 +59,39 @@ class apiController extends nlsCards {
         die;
     }
 
-    public function getComponentData($component) {
+    public function getComponentData($component)
+    {
+        $start = microtime(true);
+
         switch ($component) {
             case 'resumeCount':
-                $result = $this->resumeGetCount($this->user_id);
+                $result = $this->cache->call([$this, 'resumeGetCount'], $this->user_id);
+                //$result = $this->resumeGetCount($this->user_id);
                 break;
             case 'applayedJobsCount':
-                $result = $this->applayedJobGetCount($this->user_id);
+                $result = $this->cache->call([$this, 'applayedJobGetCount'], $this->user_id);
+                //$result = $this->applayedJobGetCount($this->user_id);
                 break;
             case 'fileCount':
-                $result = $this->fileGetCount($this->user_id);
+                $result = $this->cache->call([$this, 'fileGetCount'], $this->user_id);
+                //$result = $this->fileGetCount($this->user_id);
                 break;
             case 'newJobsCount':
-                $result = $this->newJobsGetCount($this->user_id);
+                $result = $this->cache->call([$this, 'newJobsGetCount'], $this->user_id);
+                //$result = $this->newJobsGetCount($this->user_id);
                 break;
             case 'totalJobsCount':
-                $result = $this->totalJobsCount($this->user_id);
+                $result = $this->cache->call([$this, 'totalJobsCount'], $this->user_id);
+                //$result = $this->totalJobsCount($this->user_id);
                 break;
             default:
                 # code...
                 break;
         }
+        $end = microtime(true);
+        JLog::add($component . ': time: ' . ($end - $start), JLog::INFO, 'colman');
+        JLog::add('---------------', JLog::INFO, 'colman');
+
         echo json_encode($result);
         die;
     }
@@ -83,35 +100,24 @@ class apiController extends nlsCards {
         $from = intval($params['lastId']) * intval($params['countPerPage'] - 1) + 1;
         $to = $from + intval($params['countPerPage'] - 1);
 
+        $start = microtime(true);
+        
         if ($params['cont_type'] === "filled-jobs") {
-            $start = microtime(true);
-            JLog::add('filled-jobs: start: ' . $start, JLog::INFO, 'colman');
-            $listData = $this->getFilledJobsList($this->user_id, $from, $to);
-            $end = microtime(true);
-            JLog::add('filled-jobs: end: ' . $end, JLog::INFO, 'colman');
-            JLog::add('filled-jobs: end: ' . ($end - $start), JLog::INFO, 'colman');
+            $listData = $this->cache->call([$this, 'getFilledJobsList'],$this->user_id, $from, $to);
+            //$listData = $this->getFilledJobsList($this->user_id, $from, $to);
         } elseif ($params['cont_type'] === "new-jobs") {
-            $start = microtime(true);
-            JLog::add('new-jobs: start: ' . $start, JLog::INFO, 'colman');
+            $listData = $this->cache->call([$this, 'getNewJobsList'],$params['lastId'] * ($params['countPerPage'] - 1), $params['countPerPage']);
             $listData = $this->getNewJobsList($params['lastId'] * ($params['countPerPage'] - 1), $params['countPerPage']);
-            $end = microtime(true);
-            JLog::add('new-jobs: end: ' . $end, JLog::INFO, 'colman');
-            JLog::add('new-jobs: end: ' . ($end - $start), JLog::INFO, 'colman');
         } elseif ($params['cont_type'] === "cv") {
-            $start = microtime(true);
-            JLog::add('cv: start: ' . $start, JLog::INFO, 'colman');
-            $listData = $this->getCvList($this->user_id);
-            $end = microtime(true);
-            JLog::add('cv: end: ' . $end, JLog::INFO, 'colman');
-            JLog::add('cv: end: ' . ($end - $start), JLog::INFO, 'colman');
+            $listData = $this->cache->call([$this, 'getCvList'], $this->user_id);
+            //$listData = $this->getCvList($this->user_id);
         } elseif ($params['cont_type'] === "files") {
-            $start = microtime(true);
-            JLog::add('files: start: ' . $start, JLog::INFO, 'colman');
-            $listData = $this->getFiles($this->user_id, $from, $to);
-            $end = microtime(true);
-            JLog::add('files: end: ' . $end, JLog::INFO, 'colman');
-            JLog::add('files: end: ' . ($end - $start), JLog::INFO, 'colman');
+            $listData = $this->cache->call([$this, 'getFiles'], $this->user_id, $from, $to);
+            //$listData = $this->getFiles($this->user_id, $from, $to);
         }
+
+        $end = microtime(true);
+        JLog::add($params['cont_type'] . ': time: ' . ($end - $start), JLog::INFO, 'colman');
         JLog::add('---------------', JLog::INFO, 'colman');
 
         echo json_encode($listData);
