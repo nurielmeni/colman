@@ -1,10 +1,15 @@
 var LoadingIndicator = LoadingIndicator || (function ($, id) {
+  var count = 0;
+
   function show() {
+    count++;
     $('#' + id).show();
   }
 
   function hide() {
-    $('#' + id).hide();
+    if (--count === 0) {
+      $('#' + id).hide();
+    }
   }
 
   $(document).ajaxStart(show);
@@ -120,28 +125,7 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
       id_pref: thisId,
       countPerPage: countPerPage,
       downloadFunction: function (itemId) { },
-      //            uploadFunction: function (formId) {
-      //                var formData = new FormData(formId[0]);
-      //
-      //                $.ajax({
-      //                    type: 'POST',
-      //                    data: formData,
-      //                    //async: false,
-      //                    success: function (result) {
-      //                        // ... Process the result ...
-      //                        //alert(result);
-      //                        var res =result;
-      //                        if (res != null && res.hasOwnProperty("result") && res.result === "auth required")
-      //                        {
-      //                            alert("Session Expired, please log in again.");
-      //                            location.reload();
-      //                        }
-      //                    },
-      //                    cache: false,
-      //                    contentType: false,
-      //                    processData: false
-      //                });
-      //            },
+
       deleteFunction: function (itemId) {
         jQuery
           .ajax({

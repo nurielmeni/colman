@@ -273,45 +273,45 @@
             },
             data: { type: "get_api", action: "getSearchOptionsAction", controller: "search" }
         })
-            .done(function (res) {
+        .done(function (res) {
 
-                if (res != null && res.hasOwnProperty("result") && res.result === "auth required") {
-                    alert("Session Expired, please log in again.");
-                    location.reload();
-                }
-                //   var obj = JSON.parse( res );
-                //  console.log(res);
-                $.each(res.jobArea, function (i, item) {
-                    $("#jobAreaId").append(new Option(item.name, item.id));
-                });
+            if (res != null && res.hasOwnProperty("result") && res.result === "auth required") {
+                alert("Session Expired, please log in again.");
+                location.reload();
+            }
+            //   var obj = JSON.parse( res );
+            //  console.log(res);
+            $.each(res.jobArea, function (i, item) {
+                $("#jobAreaId").append(new Option(item.name, item.id));
+            });
 
-                $.each(res.categoryList, function (i, item) {
-                    $("#categorySearchId").append(new Option(item.name, item.id));
-                });
+            $.each(res.categoryList, function (i, item) {
+                $("#categorySearchId").append(new Option(item.name, item.id));
+            });
 
-                $.each(res.jobLocations, function (i, item) {
-                    $("#jobLocationId").append(new Option(item.name, item.id));
-                });
+            $.each(res.jobLocations, function (i, item) {
+                $("#jobLocationId").append(new Option(item.name, item.id));
+            });
 
-                $("#searchModId").removeClass('disabled').click(function () {
-                    getContent($(this).attr('id'), 0, countPerPageSearch, false);
-                });
+            $("#searchModId").removeClass('disabled').click(function () {
+                getContent($(this).attr('id'), 0, countPerPageSearch, false);
+            });
 
-                $('#search_modul .search-modul-wrap select.selectmenu').multiselect("refresh");
+            $('#search_modul .search-modul-wrap select.selectmenu').multiselect("refresh");
 
-                /**
-                 *  If the query string contain "getJobById" param,
-                 *  will get the jobid and display to the user onload
-                 *  after the search module is ready
-                 */
-                //                    var getJobByIdVal = parseInt(getParameterByName('getJobById'));
-                //                    if ( !isNaN(getJobByIdVal) ) {
-                //                        jQuery('#search_modul input.search-modul-keyword').val(getJobByIdVal);
-                //                        jQuery('#searchModId').click();
-                //                        jQuery('#search_modul input.search-modul-keyword').val('');
-                //                    }
-            })
-            .always(LoadingIndicator.hide);
+            /**
+             *  If the query string contain "getJobById" param,
+             *  will get the jobid and display to the user onload
+             *  after the search module is ready
+             */
+            //                    var getJobByIdVal = parseInt(getParameterByName('getJobById'));
+            //                    if ( !isNaN(getJobByIdVal) ) {
+            //                        jQuery('#search_modul input.search-modul-keyword').val(getJobByIdVal);
+            //                        jQuery('#searchModId').click();
+            //                        jQuery('#search_modul input.search-modul-keyword').val('');
+            //                    }
+        })
+        .always(LoadingIndicator.hide);
     });
 })();
 
