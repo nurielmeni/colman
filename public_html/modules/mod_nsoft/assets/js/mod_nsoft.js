@@ -12,8 +12,8 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
     }
   }
 
-  $(document).ajaxStart(show);
-  $(document).ajaxSend(show);
+  //$(document).ajaxStart(show);
+  //$(document).ajaxSend(show);
   $(document).ajaxStop(hide);
 
   return {
