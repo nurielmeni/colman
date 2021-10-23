@@ -19,6 +19,7 @@
             if (base.options.pageNumber > 0) {
                 var newElem = $("<button/>").attr("id", base.options.id_pref + "prev").addClass("pagination-previous-job").text(base.options.previousButton);
                 newElem.click(function () {
+                    $(this).parent().append('<progress class="pure-material-progress-linear page" style="margin-top: 20px;"></progress>');
                     _goPrevious();
                 });
                 base.$el.append(newElem);
@@ -27,6 +28,7 @@
             if (base.options.haveNext === true) {
                 var newElem = $("<button/>").attr("id", base.options.id_pref + "next").addClass("pagination-next-job").text(base.options.nextButton);
                 newElem.click(function () {
+                    $(this).parent().append('<progress class="pure-material-progress-linear page" style="margin-top: 20px;"></progress>');
                     _goNext();
                 });
                 base.$el.append(newElem);

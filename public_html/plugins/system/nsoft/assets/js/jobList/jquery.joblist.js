@@ -194,7 +194,7 @@
                 url: source,
                 async: true,
                 beforeSend: function () {
-                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear"></progress>');
+                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear apply-block"></progress>');
                 },
                 success: function (data) {
                         longDetailsHtml = $.parseHTML(data);
@@ -253,8 +253,6 @@
                         }
 
                         curBlock.find("#apply-job-submit-" + jobId).click(function () {
-
-
                             if ($("#apply-job-upload-file2-" + jobId).val() != null && $("#apply-job-upload-file2-" + jobId).val() !== "" ||
                                 (curBlock.find("#apply-job-upload-file-type").val() == 'cv' &&
                                     (
@@ -273,7 +271,10 @@
                                 $.ajax({
                                     type: 'POST',
                                     data: formData,
-                                    async: false,
+                                    beforeSend: function () {
+                                        curBlock.find("#apply-job-submit-" + jobId).before('<progress class="pure-material-progress-linear submit" style="margin-bottom: 20px;"></progress>');
+                                    },
+                                    async: true,
                                     success: function (result) {
                                         // ... Process the result ...
                                         if (result == 0) {
@@ -310,6 +311,9 @@
                                     cache: false,
                                     contentType: false,
                                     processData: false
+                                })
+                                .always(function () {
+                                    curBlock.find("#apply-job-submit-" + jobId).parent().find('progress.submit').remove();
                                 });
                             } else {
                                 alert("קובץ קורות חיים לא נבחר:\nעליך לבחור קובץ קורות חיים מהקבצים הקיימים במערכת או להעלות קובץ קורות חיים חדש.");
@@ -318,9 +322,6 @@
                         });
 
                 }
-            })
-            .always(function () {
-                // $('#' + id_pref + 'block' + item.id).parent().find('progress').remove();
             });
 
             // Change the file types allowed for selection
@@ -387,7 +388,7 @@
                         updateParameterUrl('getJobById', obj.JobId);
                     })            
                     .always(function () {
-                        $('#' + id_pref + 'block' + item.id).parent().find('progress').remove();
+                        $('#' + id_pref + 'block' + item.id).parent().find('progress.apply-block').remove();
                     });
 
                     currentBlock.find('.joblist-close').text(settings.closeButton);
