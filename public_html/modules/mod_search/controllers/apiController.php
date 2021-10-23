@@ -6,6 +6,18 @@ class apiController extends nlsCards {
 
     public function __construct($username_token, $password_token) {
         parent::__construct($username_token, $password_token);
+        JLog::addLogger(
+            array(
+                // Sets file name
+                'text_file' => 'colman.log.php'
+            ),
+            // Sets messages of all log levels to be sent to the file.
+            JLog::ALL,
+            // The log category/categories which should be recorded in this file.
+            // In this case, it's just the one category from our extension.
+            // We still need to put it inside an array.
+            array('colman')
+        );
     }
 
     public function getSearchResultAction($params) {
