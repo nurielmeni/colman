@@ -32,7 +32,9 @@
                 url: source,
                 async: true,
                 beforeSend: function () {
-                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear"></progress>');
+                    if (state === 1){
+                        $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear"></progress>');
+                    }
                 },
                 success: function (data) {
                     longDetailsHtml = $.parseHTML(data);
@@ -191,128 +193,134 @@
             jQuery.ajax({
                 url: source,
                 async: true,
+                beforeSend: function () {
+                    $('#' + id_pref + 'block' + item.id).before('<progress class="pure-material-progress-linear"></progress>');
+                },
                 success: function (data) {
-                    longDetailsHtml = $.parseHTML(data);
-                    curBlock.append(longDetailsHtml);
+                        longDetailsHtml = $.parseHTML(data);
+                        curBlock.append(longDetailsHtml);
 
-                    curBlock.find('#action').attr('id', 'action_' + jobId);
-                    curBlock.find('#controller').attr('id', 'controller_' + jobId).val(settings.controller);
-                    curBlock.find('#type').attr('id', 'type_' + jobId).val("get_api");
-                    curBlock.find('#jobId').attr('id', 'jobId_' + jobId).val(jobId);
-                    curBlock.find('#jobCode').attr('id', 'jobCode_' + jobId).val(item.jobCode);
-                    curBlock.find('#jobTitle').attr('id', 'jobTitle_' + jobId).val(item.name);
-                    curBlock.find("#apply-job-localFile").attr('id', 'apply-job-localFile-' + jobId);
-                    curBlock.find("#apply-job-upload-computer").attr('id', 'apply-job-upload-computer-' + jobId).click(function () {
+                        curBlock.find('#action').attr('id', 'action_' + jobId);
+                        curBlock.find('#controller').attr('id', 'controller_' + jobId).val(settings.controller);
+                        curBlock.find('#type').attr('id', 'type_' + jobId).val("get_api");
+                        curBlock.find('#jobId').attr('id', 'jobId_' + jobId).val(jobId);
+                        curBlock.find('#jobCode').attr('id', 'jobCode_' + jobId).val(item.jobCode);
+                        curBlock.find('#jobTitle').attr('id', 'jobTitle_' + jobId).val(item.name);
+                        curBlock.find("#apply-job-localFile").attr('id', 'apply-job-localFile-' + jobId);
+                        curBlock.find("#apply-job-upload-computer").attr('id', 'apply-job-upload-computer-' + jobId).click(function () {
+                            curBlock.find("#apply-job-localFile-" + jobId).click();
+                        });
+                        curBlock.find("#apply-job-localFile").attr('id', 'apply-job-localFile-' + jobId);
+                        curBlock.find("#apply-job-dropbox-fileUrl").attr('id', 'apply-job-dropbox-fileUrl-' + jobId);
+                        curBlock.find("#apply-job-dropbox-fileName").attr('id', 'apply-job-dropbox-fileName-' + jobId);
+                        curBlock.find("#apply-job-skydrive-fileUrl").attr('id', 'apply-job-skydrive-fileUrl-' + jobId);
+                        curBlock.find("#apply-job-skydrive-fileName").attr('id', 'apply-job-skydrive-fileName-' + jobId);
 
-                        curBlock.find("#apply-job-localFile-" + jobId).click();
-                    });
-                    curBlock.find("#apply-job-localFile").attr('id', 'apply-job-localFile-' + jobId);
-                    curBlock.find("#apply-job-dropbox-fileUrl").attr('id', 'apply-job-dropbox-fileUrl-' + jobId);
-                    curBlock.find("#apply-job-dropbox-fileName").attr('id', 'apply-job-dropbox-fileName-' + jobId);
-                    curBlock.find("#apply-job-skydrive-fileUrl").attr('id', 'apply-job-skydrive-fileUrl-' + jobId);
-                    curBlock.find("#apply-job-skydrive-fileName").attr('id', 'apply-job-skydrive-fileName-' + jobId);
+                        curBlock.find("#apply-job-localFile-" + jobId).change(function () {
+                            var fileName = curBlock.find("#apply-job-localFile-" + jobId).val();
+                            var clean = fileName.split('\\').pop();
+                            //curBlock.find("#apply-job-selected-fileName").attr('id', 'apply-job-selected-fileName-' + jobId).text(clean);
+                            $("#apply-job-upload-computer-" + jobId).addClass('selected');
+                        });
 
-                    curBlock.find("#apply-job-localFile-" + jobId).change(function () {
-                        var fileName = curBlock.find("#apply-job-localFile-" + jobId).val();
-                        var clean = fileName.split('\\').pop();
-                        //curBlock.find("#apply-job-selected-fileName").attr('id', 'apply-job-selected-fileName-' + jobId).text(clean);
-                        $("#apply-job-upload-computer-" + jobId).addClass('selected');
-                    });
+                        curBlock.find("#apply-job-upload-dropbox").attr('id', 'apply-job-upload-dropbox-' + jobId);
+                        curBlock.find("#apply-job-upload-dropbox-" + jobId).click(function () {
+                            Dropbox.choose(options);
+                        });
 
-                    curBlock.find("#apply-job-upload-dropbox").attr('id', 'apply-job-upload-dropbox-' + jobId);
-                    curBlock.find("#apply-job-upload-dropbox-" + jobId).click(function () {
-                        Dropbox.choose(options);
-                    });
-
-                    curBlock.find("#apply-job-upload-skydrive").attr('id', 'apply-job-upload-skydrive-' + jobId);
-                    curBlock.find("#apply-job-upload-skydrive-" + jobId).click(function () {
-                        WL.init({ client_id: onedriveClientId, redirect_uri: onedriveRedirectUri });
-                        WL.login({ "scope": "wl.skydrive wl.signin" }).then(
-                            function (response) {
-                                openFromSkyDrivePopup(curBlock, jobId);
-                            },
-                            function (response) {
-                                log("Failed to authenticate.");
-                            }
-                        );
-
-                    });
-                    curBlock.find("#apply-job-submit").attr('id', 'apply-job-submit-' + jobId);
-                    curBlock.find("#apply-job-upload-form").attr('id', 'apply-job-upload-form-' + jobId);
-
-                    curBlock.find("#apply-job-upload-file1").attr('id', 'apply-job-upload-file1-' + jobId);
-                    curBlock.find("#apply-job-upload-file2").attr('id', 'apply-job-upload-file2-' + jobId);
-                    if (!isLogin) {
-                        $(longDetailsHtml).find('.apply-job-content-container')[0].remove();
-                    } else {
-                        getSelectValues(curBlock, jobId);
-                    }
-
-                    curBlock.find("#apply-job-submit-" + jobId).click(function () {
-
-
-                        if ($("#apply-job-upload-file2-" + jobId).val() != null && $("#apply-job-upload-file2-" + jobId).val() !== "" ||
-                            (curBlock.find("#apply-job-upload-file-type").val() == 'cv' &&
-                                (
-                                    $("#apply-job-localFile-" + jobId).val() != null && $("#apply-job-localFile-" + jobId).val() !== "" ||
-                                    $("#apply-job-dropbox-fileUrl-" + jobId).val() != null && $("#apply-job-dropbox-fileUrl-" + jobId).val() !== "" ||
-                                    $("#apply-job-skydrive-fileUrl-" + jobId).val() != null && $("#apply-job-skydrive-fileUrl-" + jobId).val() !== ""
-                                )
-                            )) {
-
-                            var formData = new FormData(curBlock.find("#apply-job-upload-form-" + jobId)[0]);
-
-                            $("#apply-job-upload-computer-" + jobId).removeClass('selected');
-                            $("#apply-job-upload-dropbox-" + jobId).removeClass('selected');
-                            $("#apply-job-upload-skydrive-" + jobId).removeClass("selected");
-
-                            $.ajax({
-                                type: 'POST',
-                                data: formData,
-                                async: false,
-                                success: function (result) {
-                                    // ... Process the result ...
-                                    if (result == 0) {
-                                        alert("ERROR: Sorry but there was some problem. Please try again!");
-
-
-                                    } else {
-                                        //  debugger;
-                                        var resArray = JSON.parse(result);
-                                        $('#apply-job-upload-form-' + jobId).hide();
-                                        $(".apply-job-upload-response.apply-job-upload-form").show();
-
-                                        //   showHideDetails(id_pref, 0, item);
-                                        location.hash = "";
-                                        location.hash = curBlock.attr('id');
-
-                                        // Update files counter if files added
-                                        if (typeof (resArray.fileList) !== "undefined" && typeof (resArray.fileList.type) !== "undefined")
-                                            switch (resArray.fileList.type) {
-                                                case "cv":
-                                                    console.log("cv: " + resArray.fileList.count);
-                                                    $('.board-modul-box.cv .board-modul-count').text(resArray.fileList.count);
-                                                    break;
-                                                case "file":
-                                                    console.log("file: " + resArray.fileList.count);
-                                                    $('.board-modul-box.files .board-modul-count').text(resArray.fileList.count);
-                                                    break;
-                                                default:
-                                                    console.log("No files were uploded");
-                                                    break;
-                                            }
-                                    }
+                        curBlock.find("#apply-job-upload-skydrive").attr('id', 'apply-job-upload-skydrive-' + jobId);
+                        curBlock.find("#apply-job-upload-skydrive-" + jobId).click(function () {
+                            WL.init({ client_id: onedriveClientId, redirect_uri: onedriveRedirectUri });
+                            WL.login({ "scope": "wl.skydrive wl.signin" }).then(
+                                function (response) {
+                                    openFromSkyDrivePopup(curBlock, jobId);
                                 },
-                                cache: false,
-                                contentType: false,
-                                processData: false
-                            });
+                                function (response) {
+                                    log("Failed to authenticate.");
+                                }
+                            );
+
+                        });
+                        curBlock.find("#apply-job-submit").attr('id', 'apply-job-submit-' + jobId);
+                        curBlock.find("#apply-job-upload-form").attr('id', 'apply-job-upload-form-' + jobId);
+
+                        curBlock.find("#apply-job-upload-file1").attr('id', 'apply-job-upload-file1-' + jobId);
+                        curBlock.find("#apply-job-upload-file2").attr('id', 'apply-job-upload-file2-' + jobId);
+                        if (!isLogin) {
+                            $(longDetailsHtml).find('.apply-job-content-container')[0].remove();
                         } else {
-                            alert("קובץ קורות חיים לא נבחר:\nעליך לבחור קובץ קורות חיים מהקבצים הקיימים במערכת או להעלות קובץ קורות חיים חדש.");
+                            getSelectValues(curBlock, jobId);
                         }
 
-                    });
+                        curBlock.find("#apply-job-submit-" + jobId).click(function () {
+
+
+                            if ($("#apply-job-upload-file2-" + jobId).val() != null && $("#apply-job-upload-file2-" + jobId).val() !== "" ||
+                                (curBlock.find("#apply-job-upload-file-type").val() == 'cv' &&
+                                    (
+                                        $("#apply-job-localFile-" + jobId).val() != null && $("#apply-job-localFile-" + jobId).val() !== "" ||
+                                        $("#apply-job-dropbox-fileUrl-" + jobId).val() != null && $("#apply-job-dropbox-fileUrl-" + jobId).val() !== "" ||
+                                        $("#apply-job-skydrive-fileUrl-" + jobId).val() != null && $("#apply-job-skydrive-fileUrl-" + jobId).val() !== ""
+                                    )
+                                )) {
+
+                                var formData = new FormData(curBlock.find("#apply-job-upload-form-" + jobId)[0]);
+
+                                $("#apply-job-upload-computer-" + jobId).removeClass('selected');
+                                $("#apply-job-upload-dropbox-" + jobId).removeClass('selected');
+                                $("#apply-job-upload-skydrive-" + jobId).removeClass("selected");
+
+                                $.ajax({
+                                    type: 'POST',
+                                    data: formData,
+                                    async: false,
+                                    success: function (result) {
+                                        // ... Process the result ...
+                                        if (result == 0) {
+                                            alert("ERROR: Sorry but there was some problem. Please try again!");
+
+
+                                        } else {
+                                            //  debugger;
+                                            var resArray = JSON.parse(result);
+                                            $('#apply-job-upload-form-' + jobId).hide();
+                                            $(".apply-job-upload-response.apply-job-upload-form").show();
+
+                                            //   showHideDetails(id_pref, 0, item);
+                                            location.hash = "";
+                                            location.hash = curBlock.attr('id');
+
+                                            // Update files counter if files added
+                                            if (typeof (resArray.fileList) !== "undefined" && typeof (resArray.fileList.type) !== "undefined")
+                                                switch (resArray.fileList.type) {
+                                                    case "cv":
+                                                        console.log("cv: " + resArray.fileList.count);
+                                                        $('.board-modul-box.cv .board-modul-count').text(resArray.fileList.count);
+                                                        break;
+                                                    case "file":
+                                                        console.log("file: " + resArray.fileList.count);
+                                                        $('.board-modul-box.files .board-modul-count').text(resArray.fileList.count);
+                                                        break;
+                                                    default:
+                                                        console.log("No files were uploded");
+                                                        break;
+                                                }
+                                        }
+                                    },
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false
+                                });
+                            } else {
+                                alert("קובץ קורות חיים לא נבחר:\nעליך לבחור קובץ קורות חיים מהקבצים הקיימים במערכת או להעלות קובץ קורות חיים חדש.");
+                            }
+
+                        });
+
                 }
+            })
+            .always(function () {
+                // $('#' + id_pref + 'block' + item.id).parent().find('progress').remove();
             });
 
             // Change the file types allowed for selection
@@ -360,24 +368,27 @@
                         //async: false,
                         data: { type: "get_api", action: "getJobDescription", controller: settings.controller, jobId: item.jobid }
                     })
-                        .done(function (res) {
+                    .done(function (res) {
 
-                            if (res.result === "auth required") {
-                                alert("Session Expired, please log in again.");
-                                location.reload();
-                            }
+                        if (res.result === "auth required") {
+                            alert("Session Expired, please log in again.");
+                            location.reload();
+                        }
 
-                            var obj = res; //JSON.parse( res );
+                        var obj = res; //JSON.parse( res );
 
-                            currentBlock.find('.joblist-description').html(obj.Description);
-                            currentBlock.find('.joblist-requirement').html(obj.Requirements);
-                            currentBlock.find('.joblist-skills').html(obj.Skills);
-                            var item = obj.rankList.find(function (elm) { return elm['id'] == obj.Rank; });
-                            currentBlock.find('.joblist-rank').html(typeof (item) === 'undefined' ? '' : item.name);
+                        currentBlock.find('.joblist-description').html(obj.Description);
+                        currentBlock.find('.joblist-requirement').html(obj.Requirements);
+                        currentBlock.find('.joblist-skills').html(obj.Skills);
+                        var item = obj.rankList.find(function (elm) { return elm['id'] == obj.Rank; });
+                        currentBlock.find('.joblist-rank').html(typeof (item) === 'undefined' ? '' : item.name);
 
-                            // Updates the query string so it can be sent to another user
-                            updateParameterUrl('getJobById', obj.JobId);
-                        });
+                        // Updates the query string so it can be sent to another user
+                        updateParameterUrl('getJobById', obj.JobId);
+                    })            
+                    .always(function () {
+                        $('#' + id_pref + 'block' + item.id).parent().find('progress').remove();
+                    });
 
                     currentBlock.find('.joblist-close').text(settings.closeButton);
                     currentBlock.find('.joblist-close').attr("id", id_pref + "close" + item.id).click(function () {
