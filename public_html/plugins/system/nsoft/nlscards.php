@@ -32,6 +32,9 @@ class nlsCards {
 
             $session = JFactory::getSession();
             $this->user_id = $session->get("applicant_user_id"); //"451D2E28-BB7F-4076-A56E-0E6E2445E458";  // 
+
+            $this->cache = JFactory::getCache('nlscards');
+            $this->cache->setCaching(1);
         }
     }
 
@@ -459,7 +462,8 @@ class nlsCards {
 //            
 
                 if (isset($this->user_id) && !empty($this->user_id)) {
-                    $filedJobs = $this->getFilledJobsList($this->user_id, 0, 1000);
+                    $filedJobs = $this->cache->call([$this, 'getFilledJobsList'], $this->user_id, 0, 1000);
+                    //$filedJobs = $this->getFilledJobsList($this->user_id, 0, 1000);
 
                     foreach ($result as $key => $searchJob) {
                         $status = 0;

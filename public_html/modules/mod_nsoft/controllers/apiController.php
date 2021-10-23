@@ -23,8 +23,6 @@ class apiController extends nlsCards {
 
         $this->cache = JFactory::getCache('mod_nsoft');
         $this->cache->setCaching(1);
-        $this->cache->call([$this, 'getFilledJobsList'], 0, 1000);
-
     }
 
     public function downloadFileAction($param) {
