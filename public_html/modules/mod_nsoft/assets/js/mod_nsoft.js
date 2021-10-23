@@ -1,26 +1,28 @@
-var LoadingIndicator = LoadingIndicator || (function ($, id) {
-  var count = 0;
+var LoadingIndicator =
+  LoadingIndicator ||
+  (function ($, id) {
+    var count = 0;
 
-  function show() {
-    count++;
-    $('#' + id).show();
-  }
-
-  function hide() {
-    if (--count === 0) {
-      $('#' + id).hide();
+    function show() {
+      count++;
+      $("#" + id).show();
     }
-  }
 
-  //$(document).ajaxStart(show);
-  //$(document).ajaxSend(show);
-  $(document).ajaxStop(hide);
+    function hide() {
+      if (--count === 0) {
+        $("#" + id).hide();
+      }
+    }
 
-  return {
-    show: show,
-    hide, hide
-  }
-})(jQuery, 'progress-loading');
+    //$(document).ajaxStart(show);
+    //$(document).ajaxSend(show);
+    $(document).ajaxStop(hide);
+
+    return {
+      show: show,
+      hide: hide,
+    };
+  })(jQuery, "progress-loading");
 
 (function () {
   var $ = jQuery;
@@ -28,11 +30,11 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
   getBoardComponentsCounts();
 
   function getBoardComponentsCounts() {
-    getComponent('resumeCount', 'cv');
-    getComponent('applayedJobsCount', 'filled-jobs');
-    getComponent('fileCount', 'files');
-    getComponent('newJobsCount', 'new-jobs');
-    getComponent('totalJobsCount', 'total');
+    getComponent("resumeCount", "cv");
+    getComponent("applayedJobsCount", "filled-jobs");
+    getComponent("fileCount", "files");
+    getComponent("newJobsCount", "new-jobs");
+    getComponent("totalJobsCount", "total");
   }
 
   function getComponent(component, id) {
@@ -40,8 +42,13 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
       method: "POST",
       url: "",
       dataType: "json",
-      data: { type: "get_api", action: "myAction", controller: "jobs", component: component },
-      beforeSend: LoadingIndicator.show
+      data: {
+        type: "get_api",
+        action: "myAction",
+        controller: "jobs",
+        component: component,
+      },
+      beforeSend: LoadingIndicator.show,
     })
       .done(function (res) {
         if (
@@ -53,8 +60,10 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
           location.reload();
         }
 
-        if (id === 'total') {
-          $(".board-modul-title-container .board-modul-total-jobs span").html(res.TotalHits);
+        if (id === "total") {
+          $(".board-modul-title-container .board-modul-total-jobs span").html(
+            res.TotalHits
+          );
         } else {
           updateBoardCounter(id, res);
         }
@@ -95,7 +104,7 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
               controller: "jobs",
               itemId: itemId,
             },
-            beforeSend: LoadingIndicator.show
+            beforeSend: LoadingIndicator.show,
           })
           .done(function (res) {
             if (
@@ -124,7 +133,7 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
       objList: obj,
       id_pref: thisId,
       countPerPage: countPerPage,
-      downloadFunction: function (itemId) { },
+      downloadFunction: function (itemId) {},
 
       deleteFunction: function (itemId) {
         jQuery
@@ -138,7 +147,7 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
               itemId: itemId,
               cont_type: thisId,
             },
-            beforeSend: LoadingIndicator.show
+            beforeSend: LoadingIndicator.show,
           })
           .done(function (res) {
             if (
@@ -188,8 +197,7 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
       cache: false,
       contentType: false,
       processData: false,
-    })
-    .always(LoadingIndicator.hide);
+    }).always(LoadingIndicator.hide);
   }
 
   function getContent(thisId, pageNumJob, countPerPage, isContentChange) {
@@ -207,7 +215,7 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
           lastId: pageNumJob,
           countPerPage: countPerPage + 1,
         },
-        beforeSend: LoadingIndicator.show
+        beforeSend: LoadingIndicator.show,
       })
       .fail(function (res) {
         alert(res);
