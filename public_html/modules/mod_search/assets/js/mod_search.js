@@ -49,14 +49,15 @@
                     beforeSend: LoadingIndicator.show,
                     data: { type: "get_api", action: "applyForJobAction", controller: "search", itemId: itemId }
                 })
-                    .done(function (res) {
-                        //alert(res);
-                        if (res != null && res.hasOwnProperty("result") && res.result === "auth required") {
-                            alert("Session Expired, please log in again.");
-                            location.reload();
-                        }
-                        //console.log('applyForJob:mod_search');
-                    });
+                .done(function (res) {
+                    //alert(res);
+                    if (res != null && res.hasOwnProperty("result") && res.result === "auth required") {
+                        alert("Session Expired, please log in again.");
+                        location.reload();
+                    }
+                    //console.log('applyForJob:mod_search');
+                })
+                .always(LoadingIndicator.hide);
             }
         });
         return container;
@@ -96,25 +97,77 @@
             //async: false,
             data: { type: "get_api", action: "getSearchResultAction", controller: "search", lastId: pageNumJob, countPerPage: countPerPage + 1, searchData: params }
         })
-            .done(function (res) {
-                $('#get-job-by-id-spinner').remove();
+        .done(function (res) {
+            $('#get-job-by-id-spinner').remove();
 
-                if (res != null && res.hasOwnProperty("result") && res.result === "auth required") {
-                    alert("Session Expired, please log in again.");
-                    location.reload();
+            if (res != null && res.hasOwnProperty("result") && res.result === "auth required") {
+                alert("Session Expired, please log in again.");
+                location.reload();
+            }
+            //console.log(res.jobs.length);
+            gaSendSuccessSearch(this.thisId);
+            //  var obj = JSON.parse( res );
+            // debugger;
+            obj = res;
+            if (obj.TotalHits == null) {
+                obj.TotalHits = 0;
+            }
+            if (isContentChange) {
+                var content = $(document.createElement('div')).addClass("popup_content");
+                if (obj.jobs.length != 0) {
+                    content.html(getJobListCont("searchModId", obj, countPerPage));
+
+                    paginationDiv = $(document.createElement('div')).attr('id', "paginationSearchJobs");
+                    paginationDiv.pagination({
+                        id_pref: "job_list_",
+                        pageNumber: pageNumJob,
+                        scrollTo: "popup_div",
+                        haveNext: ((obj.jobs.length > countPerPage) ? true : false),
+                        ajaxChangePage: function (page) {
+                            pageNumCat = page;
+                            getContent(thisId, page, countPerPage, true);
+                        }
+                    });
+
+                    content.append(paginationDiv);
+                } else {
+                    var noResult = $(document.createElement('p')).addClass("popup_noresult");
+                    noResult.html("לא נמצאו משרות מתאימות");
+                    content.append(noResult);
                 }
-                //console.log(res.jobs.length);
-                gaSendSuccessSearch(this.thisId);
-                //  var obj = JSON.parse( res );
-                // debugger;
-                obj = res;
-                if (obj.TotalHits == null) {
-                    obj.TotalHits = 0;
-                }
-                if (isContentChange) {
+
+                $('#popup_div.search').find(".popup_content").html(content);
+
+                setSearchCount($('#popup_div.search').find(".popup_head").find(".count_placeholder"), obj.TotalHits);
+            } else {
+                var allContent = $(document.createElement('div')).addClass('search').attr({ 'id': "popup_div", "dir": "rtl" });
+
+                var source = "plugins/system/nsoft/assets/js/jobList/html/search-result-head.html";
+                $.get(source, function (data) {
+                    longDetailsHtml = $(data);
+                    //  longDetailsHtml.append($(document.createElement('div')).attr('id', "search_module_popup").html($("#search_modul").html()));
+                    longDetailsHtml.find("#searchModIdPopup").click(function () {
+                        getContent($(this).attr('id'), 0, countPerPageSearch, true);
+                    });
+                    longDetailsHtml.find(".search-modul-advanced-search-button").click(function () {
+
+                        location.hash = " ";
+                        $("#mod_searcha_advanced_section").css('display', 'inline-block');
+                        location.hash = "#mod_searcha_advanced_section";
+
+                    });
+
+                    longDetailsHtml.find("#jobAreaIdPopup").append($("#jobAreaId").html());
+                    longDetailsHtml.find("#categorySearchIdPopup").append($("#categorySearchId").html());
+                    longDetailsHtml.find("#jobLocationIdPopup").append($("#jobLocationId").html());
+                    longDetailsHtml.find("#keyword_search_popup").val($("#keyword_search").val());
+
+                    allContent.html(longDetailsHtml);
+
                     var content = $(document.createElement('div')).addClass("popup_content");
+
                     if (obj.jobs.length != 0) {
-                        content.html(getJobListCont("searchModId", obj, countPerPage));
+                        content.html(getJobListCont(thisId, obj, countPerPage));
 
                         paginationDiv = $(document.createElement('div')).attr('id', "paginationSearchJobs");
                         paginationDiv.pagination({
@@ -127,7 +180,6 @@
                                 getContent(thisId, page, countPerPage, true);
                             }
                         });
-
                         content.append(paginationDiv);
                     } else {
                         var noResult = $(document.createElement('p')).addClass("popup_noresult");
@@ -135,92 +187,42 @@
                         content.append(noResult);
                     }
 
-                    $('#popup_div.search').find(".popup_content").html(content);
+                    allContent.append(content);
 
-                    setSearchCount($('#popup_div.search').find(".popup_head").find(".count_placeholder"), obj.TotalHits);
-                } else {
-                    var allContent = $(document.createElement('div')).addClass('search').attr({ 'id': "popup_div", "dir": "rtl" });
+                    $.magnificPopup.open({
+                        items: {
+                            src: allContent
+                        },
+                        type: 'inline'
+                    }, 0);
 
-                    var source = "plugins/system/nsoft/assets/js/jobList/html/search-result-head.html";
-                    $.get(source, function (data) {
-                        longDetailsHtml = $(data);
-                        //  longDetailsHtml.append($(document.createElement('div')).attr('id', "search_module_popup").html($("#search_modul").html()));
-                        longDetailsHtml.find("#searchModIdPopup").click(function () {
-                            getContent($(this).attr('id'), 0, countPerPageSearch, true);
-                        });
-                        longDetailsHtml.find(".search-modul-advanced-search-button").click(function () {
-
-                            location.hash = " ";
-                            $("#mod_searcha_advanced_section").css('display', 'inline-block');
-                            location.hash = "#mod_searcha_advanced_section";
-
-                        });
-
-                        longDetailsHtml.find("#jobAreaIdPopup").append($("#jobAreaId").html());
-                        longDetailsHtml.find("#categorySearchIdPopup").append($("#categorySearchId").html());
-                        longDetailsHtml.find("#jobLocationIdPopup").append($("#jobLocationId").html());
-                        longDetailsHtml.find("#keyword_search_popup").val($("#keyword_search").val());
-
-                        allContent.html(longDetailsHtml);
-
-                        var content = $(document.createElement('div')).addClass("popup_content");
-
-                        if (obj.jobs.length != 0) {
-                            content.html(getJobListCont(thisId, obj, countPerPage));
-
-                            paginationDiv = $(document.createElement('div')).attr('id', "paginationSearchJobs");
-                            paginationDiv.pagination({
-                                id_pref: "job_list_",
-                                pageNumber: pageNumJob,
-                                scrollTo: "popup_div",
-                                haveNext: ((obj.jobs.length > countPerPage) ? true : false),
-                                ajaxChangePage: function (page) {
-                                    pageNumCat = page;
-                                    getContent(thisId, page, countPerPage, true);
-                                }
-                            });
-                            content.append(paginationDiv);
-                        } else {
-                            var noResult = $(document.createElement('p')).addClass("popup_noresult");
-                            noResult.html("לא נמצאו משרות מתאימות");
-                            content.append(noResult);
-                        }
-
-                        allContent.append(content);
-
-                        $.magnificPopup.open({
-                            items: {
-                                src: allContent
-                            },
-                            type: 'inline'
-                        }, 0);
-
-                        allContent.find('.popup_close').click(function (e) {
-                            e.preventDefault();
-                            $.magnificPopup.close();
-                        });
-
-                        allContent.find('.search-modul-wrap select.selectmenu').each(function () {
-                            var text = "";
-                            if ($(this).children().length > 0) {
-                                text = $(this).children().first().text();
-                                $(this).children().first().remove();
-                            }
-                            $(this).multiselect({
-                                appendTo: $(this).parent().get(0),
-                                header: "",
-                                noneSelectedText: text
-                            }).multiselectfilter({
-                                label: ""
-                            });
-                        });
-
-                        setSearchCount(allContent.find(".popup_head").find(".count_placeholder"), obj.TotalHits);
-
+                    allContent.find('.popup_close').click(function (e) {
+                        e.preventDefault();
+                        $.magnificPopup.close();
                     });
-                }
-            });
-    }
+
+                    allContent.find('.search-modul-wrap select.selectmenu').each(function () {
+                        var text = "";
+                        if ($(this).children().length > 0) {
+                            text = $(this).children().first().text();
+                            $(this).children().first().remove();
+                        }
+                        $(this).multiselect({
+                            appendTo: $(this).parent().get(0),
+                            header: "",
+                            noneSelectedText: text
+                        }).multiselectfilter({
+                            label: ""
+                        });
+                    });
+
+                    setSearchCount(allContent.find(".popup_head").find(".count_placeholder"), obj.TotalHits);
+
+                });
+            }
+        })
+        .always(LoadingIndicator.hide);
+}
 
 
     function setSearchCount(where, count) {

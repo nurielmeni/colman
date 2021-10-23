@@ -56,7 +56,8 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
       })
       .fail(function (e) {
         console.log("Board: component: ", component, e);
-      });
+      })
+      .always(LoadingIndicator.hide);
   }
 
   function updateBoardCounter(id, res) {
@@ -102,7 +103,8 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
             }
             //console.log('applyForJob:mod_nsoft');
             //alert(res);
-          });
+          })
+          .always(LoadingIndicator.hide);
       },
     });
     return container;
@@ -166,7 +168,8 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
             $("#" + thisId + "_popup").text(res);
             $("#" + thisId + " .board-modul-count").text(res);
             getContent(thisId, pageNumJob, countPerPage, true);
-          });
+          })
+          .always(LoadingIndicator.hide);
       },
     });
     return container;
@@ -201,7 +204,8 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
       cache: false,
       contentType: false,
       processData: false,
-    });
+    })
+    .always(LoadingIndicator.hide);
   }
 
   function getContent(thisId, pageNumJob, countPerPage, isContentChange) {
