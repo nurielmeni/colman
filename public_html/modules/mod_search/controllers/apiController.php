@@ -24,7 +24,13 @@ class apiController extends nlsCards {
         $categoryClass = new stdClass();
         $categoryClass->cat = $categoryId;
         $categoryClass->isSub = false;
+
+        $start = microtime(true);
+        JLog::add('Search: start: ' . $start, JLog::INFO, 'colman');
         $listData = $this->jobsSearch_hunter($categoryClass, $keyWord, $rankId, $scopId, $customerId, $lastId * ($countPerPage - 1), $countPerPage, $search_supplier_id, "", $jobLocation);
+        $end = microtime(true);
+        JLog::add('Search: end: ' . $end, JLog::INFO, 'colman');
+        JLog::add('Search: time: ' . ($end - $start), JLog::INFO, 'colman');
 
         $result = ["jobs" => $listData->result,"TotalHits"=>$listData->TotalHits];
         echo json_encode($result);
