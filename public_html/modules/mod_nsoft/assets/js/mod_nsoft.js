@@ -9,7 +9,7 @@ var LoadingIndicator =
     }
 
     function hide() {
-      if (--count === 0) {
+      if (--count <= 0) {
         $("#" + id).hide();
       }
     }
