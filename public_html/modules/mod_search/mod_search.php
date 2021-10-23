@@ -76,6 +76,8 @@ if ($app->input->post->get('type', FALSE) === 'get_api') {
         // Clear the search cache
         $cache = JFactory::getCache('mod_nsoft');
         $cache->clean();
+        $cache = JFactory::getCache('nlscards');
+        $cache->clean();
     }
 
     $obj->{$action}($params);
