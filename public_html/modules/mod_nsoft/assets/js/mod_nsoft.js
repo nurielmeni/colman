@@ -432,7 +432,8 @@ var LoadingIndicator = LoadingIndicator || (function ($, id) {
             });
           }
         }
-      });
+      })
+      .always(LoadingIndicator.hide);
   }
 
   $(document).ready(function () {
