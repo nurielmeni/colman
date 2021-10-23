@@ -139,9 +139,9 @@
     }
 
     $(document).ready(function () {
-        $(".board-modul-content .board-modul-count").each(function (index) {
-            $(this).html("<img src='modules/mod_nsoft/assets/images/ajax-loader.gif'>");
-        });
+        // $(".board-modul-content .board-modul-count").each(function (index) {
+        //     $(this).html("<img src='modules/mod_nsoft/assets/images/ajax-loader.gif'>");
+        // });
 
         $(".domain-modul-box").click(function () {
             id = $(this).attr('id');

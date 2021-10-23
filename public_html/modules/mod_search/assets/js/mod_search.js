@@ -262,10 +262,11 @@
             dataType: 'json',
             //async: false,
             beforeSend: function () {
+                LoadingIndicator.show();
                 var getJobByIdVal = parseInt(getParameterByName('getJobById'));
                 if (!isNaN(getJobByIdVal)) {
                     jQuery('#search_modul input.search-modul-keyword').val(getJobByIdVal);
-                    $('#mod_nsoft_section').prepend('<p id="get-job-by-id-spinner" style="text-align:center;padding-top: 15px;"><img src="/images/ajax-loader.gif"></p>');
+                    // $('#mod_nsoft_section').prepend('<p id="get-job-by-id-spinner" style="text-align:center;padding-top: 15px;"><img src="/images/ajax-loader.gif"></p>');
                     getContent('searchModId', 0, 10, false);
                     jQuery('#search_modul input.search-modul-keyword').val('');
                 }
@@ -309,7 +310,8 @@
                 //                        jQuery('#searchModId').click();
                 //                        jQuery('#search_modul input.search-modul-keyword').val('');
                 //                    }
-            });
+            })
+            .always(LoadingIndicator.hide);
     });
 })();
 
