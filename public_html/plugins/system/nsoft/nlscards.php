@@ -449,11 +449,11 @@ class nlsCards {
                 if (is_array($resultList)) {
 
                     foreach ($resultList as $job) {
-                        $result[] = $this->hunterResultToJob($job);
+                        $result[] = $this->hunterResultToJob($job, false); // false no job link
                     }
                 } elseif ($joblist->TotalHits == 1) {
 
-                    $result[] = $this->hunterResultToJob($resultList);
+                    $result[] = $this->hunterResultToJob($resultList, false);
                 }
 
 //                foreach ($result as $key => $val) {
@@ -1244,7 +1244,7 @@ class nlsCards {
 
         if (isset($list))
             foreach ($list as $job) {
-                $result[] = $this->hunterResultToJob($job);
+                $result[] = $this->hunterResultToJob($job, false);
 //                $result[] = [
 //                    "id" => $job->JobId . $i,
 //                    "name" => $job->JobTitle,
@@ -1295,11 +1295,11 @@ class nlsCards {
                 if (is_array($resultList)) {
 
                     foreach ($resultList as $job) {
-                        $listData["jobs"][] = $this->hunterResultToJob($job);
+                        $listData["jobs"][] = $this->hunterResultToJob($job, false);
                     }
                 } elseif ($joblist->TotalHits > 1) {
 
-                    $listData["jobs"][] = $this->hunterResultToJob($resultList);
+                    $listData["jobs"][] = $this->hunterResultToJob($resultList, false);
                 }
             }
         }
@@ -1331,7 +1331,7 @@ class nlsCards {
         return $listData;
     }
 
-    private function hunterResultToJob($job) {
+    private function hunterResultToJob($job, $includeJobLink = true) {
 
         $companyName = "";
         if (isset($job->IsDiscreteJob) && $job->IsDiscreteJob == true) {
@@ -1340,18 +1340,21 @@ class nlsCards {
             $companyName = $job->EmployerName;
         }
 
-        $currentJob = $this->jobGetById($job->JobId);
         $jobLink = "";
-        if (isset($currentJob->ExtendedProperties->ExtendedProperty)){
-            if (is_array($currentJob->ExtendedProperties->ExtendedProperty)){
-                foreach ($currentJob->ExtendedProperties->ExtendedProperty as $property){
-                    if ($property->PropertyName == "JobLink") $jobLink = $property->Value;
+
+        if ($includeJobLink) {
+            $currentJob = $this->jobGetById($job->JobId);
+            if (isset($currentJob->ExtendedProperties->ExtendedProperty)){
+                if (is_array($currentJob->ExtendedProperties->ExtendedProperty)){
+                    foreach ($currentJob->ExtendedProperties->ExtendedProperty as $property){
+                        if ($property->PropertyName == "JobLink") $jobLink = $property->Value;
+                    }
                 }
-            }
-            else
-            {
-                if ($currentJob->ExtendedProperties->ExtendedProperty->PropertyName == "JobLink"){
-                    $jobLink = $currentJob->ExtendedProperties->ExtendedProperty->Value;
+                else
+                {
+                    if ($currentJob->ExtendedProperties->ExtendedProperty->PropertyName == "JobLink"){
+                        $jobLink = $currentJob->ExtendedProperties->ExtendedProperty->Value;
+                    }
                 }
             }
         }
