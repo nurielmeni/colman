@@ -50,20 +50,42 @@
                         currentBlock.find('.joblist-apply').remove();
 
                     } else {
-                        currentBlock.find('.joblist-apply').attr("id", id_pref + "apply" + item.id).click(function () {
-                            // settings.applyForJob(item.id)
-                            if (item.customerSiteLink.length < 1 || cvEmailExist) showApplyBlock(settings.id_pref, item, 1);
-                            else showHideDetails(settings.id_pref, 1, item);
-                        });
-                        currentBlock.find('.joblist-apply').text(settings.applyButton);
+                        $.ajax({
+                            method: "POST",
+                            url: "",
+                            dataType: "json",
+                            data: {
+                                type: "get_api",
+                                action: "customerLink",
+                                controller: "jobs",
+                                jobId: item.jobid
+                            }
+                        })
+                        .done(function (res) {
+                            console.log('customerLink:', res);
+                            item.customerSiteLink = res.customerLink || '';
+                        })
+                        .fail(function (e) {
+                            console.log("customerLink: fail: ", e);
+                        })
+                        .always(function () {
+                            currentBlock.find('.joblist-apply').attr("id", id_pref + "apply" + item.id).click(function () {
+                                // settings.applyForJob(item.id)
+                                if (item.customerSiteLink.length < 1 || cvEmailExist) showApplyBlock(settings.id_pref, item, 1);
+                                else showHideDetails(settings.id_pref, 1, item);
+                            });
+                            currentBlock.find('.joblist-apply').text(settings.applyButton);
 
-                        //                            ADDS THE LINK TO THE CUSTOMER SITE TO APPLY
-                        if (item.customerSiteLink.length > 0) {
-                            //                                currentBlock.find('.joblist-apply').remove();
-                            if (!item.customerSiteLink.startsWith("http://") && !item.customerSiteLink.startsWith("https://"))
-                                item.customerSiteLink = "http://" + item.customerSiteLink;
-                            $('<button class="popup_btn joblist-apply customer-site" onclick="window.open(\'' + item.customerSiteLink + '\',\'_blank\'\)">הגש קו"ח באתר המעסיק</button>').insertBefore(currentBlock.find('.popup_btn.joblist-close'));
-                        }
+                            //                            ADDS THE LINK TO THE CUSTOMER SITE TO APPLY
+                            if (item.customerSiteLink.length > 0) {
+                                //                                currentBlock.find('.joblist-apply').remove();
+                                if (!item.customerSiteLink.startsWith("http://") && !item.customerSiteLink.startsWith("https://"))
+                                    item.customerSiteLink = "http://" + item.customerSiteLink;
+                                $('<button class="popup_btn joblist-apply customer-site" onclick="window.open(\'' + item.customerSiteLink + '\',\'_blank\'\)">הגש קו"ח באתר המעסיק</button>').insertBefore(currentBlock.find('.popup_btn.joblist-close'));
+                            }
+                        });
+
+
                     }
                     //console.log("---" + item);
                     currentBlock.find('.joblist-jobName').text(item.name);

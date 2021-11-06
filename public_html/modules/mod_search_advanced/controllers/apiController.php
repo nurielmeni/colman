@@ -117,5 +117,4 @@ class apiController extends nlsCards {
         echo json_encode($listData);
         die;
     }
-
 }

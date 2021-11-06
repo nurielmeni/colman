@@ -153,4 +153,23 @@ class apiController extends nlsCards {
         die;
     }
 
+    public function customerLink($params)
+    {
+        $jobLink = '';
+        $currentJob = $this->jobGetById($params['JobId']);
+        if (isset($currentJob->ExtendedProperties->ExtendedProperty)) {
+            if (is_array($currentJob->ExtendedProperties->ExtendedProperty)) {
+                foreach ($currentJob->ExtendedProperties->ExtendedProperty as $property) {
+                    if ($property->PropertyName == "JobLink") $jobLink = $property->Value;
+                }
+            } else {
+                if ($currentJob->ExtendedProperties->ExtendedProperty->PropertyName == "JobLink") {
+                    $jobLink = $currentJob->ExtendedProperties->ExtendedProperty->Value;
+                }
+            }
+        }
+
+        echo '{"customerLink": "' . $jobLink . '"}';
+        die;
+    }
 }
