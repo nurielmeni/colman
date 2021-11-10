@@ -156,7 +156,7 @@ class apiController extends nlsCards {
     public function customerLink($params)
     {
         $jobLink = '';
-        $currentJob = $this->jobGetById($params['JobId']);
+        $currentJob = $this->jobGetById($params['jobId']);
         if (isset($currentJob->ExtendedProperties->ExtendedProperty)) {
             if (is_array($currentJob->ExtendedProperties->ExtendedProperty)) {
                 foreach ($currentJob->ExtendedProperties->ExtendedProperty as $property) {
