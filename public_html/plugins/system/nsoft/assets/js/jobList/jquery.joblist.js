@@ -98,7 +98,7 @@
 
                 //                            ADDS THE LINK TO THE CUSTOMER SITE TO APPLY
                 if (item.customerSiteLink.length > 0) {
-                  //                                currentBlock.find('.joblist-apply').remove();
+                  currentBlock.find('.joblist-apply').remove();
                   if (
                     !item.customerSiteLink.startsWith("http://") &&
                     !item.customerSiteLink.startsWith("https://")
