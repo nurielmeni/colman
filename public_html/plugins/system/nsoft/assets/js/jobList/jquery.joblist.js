@@ -660,34 +660,37 @@
             } else {
               currentBlock
                 .find(".joblist-apply")
-                .attr("id", settings.id_pref + "apply" + item.id)
-                .click(function () {
+                .remove();
+                
+                // .text(settings.applyButton)
+                // .attr("id", settings.id_pref + "apply" + item.id)
+                // .click(function () {
 
-                  $.ajax({
-                    method: "POST",
-                    url: "",
-                    dataType: "json",
-                    data: {
-                      type: "get_api",
-                      action: "customerLink",
-                      controller: "jobs",
-                      jobId: item.jobid,
-                    },
-                  })
-                    .done(function (res) {
-                      console.log("customerLink:", res);
-                      item.customerSiteLink = res.customerLink || "";
-                    })
-                    .fail(function (e) {
-                      console.log("customerLink: fail: ", e);
-                    })
-                    .always(function () {
-                      if (item.customerSiteLink.length < 1)
-                        showApplyBlock(settings.id_pref, item, 1);
-                      else showHideDetails(settings.id_pref, 1, item);                      
-                    });                        //settings.applyForJob(item.id)
-                });
-              currentBlock.find(".joblist-apply").text(settings.applyButton);
+                //   Updates the customer link    
+                //   $.ajax({
+                //     method: "POST",
+                //     url: "",
+                //     dataType: "json",
+                //     data: {
+                //       type: "get_api",
+                //       action: "customerLink",
+                //       controller: "jobs",
+                //       jobId: item.jobid,
+                //     },
+                //   })
+                //     .done(function (res) {
+                //       console.log("customerLink:", res);
+                //       item.customerSiteLink = res.customerLink || "";
+                //     })
+                //     .fail(function (e) {
+                //       console.log("customerLink: fail: ", e);
+                //     })
+                //     .always(function () {
+                //       if (item.customerSiteLink.length < 1)
+                //         showApplyBlock(settings.id_pref, item, 1);
+                //       else showHideDetails(settings.id_pref, 1, item);                      
+                //     });                        //settings.applyForJob(item.id)
+                // });
             }
           },
         });
